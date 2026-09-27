@@ -9,6 +9,7 @@
 	import Checkbox from '../../components/Checkbox.svelte' with { wake: 'load' };
 	import RadioGroup from '../../components/RadioGroup.svelte' with { wake: 'load' };
 	import Switch from '../../components/Switch.svelte' with { wake: 'load' };
+	import Accordion from '../../components/Accordion.svelte' with { wake: 'load' };
 
 	let searchValue = $state('');
 	let category = $state<string | undefined>(undefined);
@@ -24,6 +25,24 @@
 		{ label: 'Performance', value: 'performance', description: 'Prioritize a faster experience.' },
 		{ label: 'Balanced', value: 'balanced', description: 'A considered default for most players.' },
 		{ label: 'Immersion', value: 'immersion', description: 'Keep the atmosphere front and center.' }
+	];
+	const accordionItems = [
+		{
+			value: 'interface',
+			title: 'Interface improvements',
+			content: 'Keep menus clear and readable while preserving the atmosphere of the world.'
+		},
+		{
+			value: 'controls',
+			title: 'Controls and shortcuts',
+			content: 'Customize the controls that make your most-used actions feel natural.'
+		},
+		{
+			value: 'legacy',
+			title: 'Legacy setting',
+			content: 'This setting is not available in the current version.',
+			disabled: true
+		}
 	];
 </script>
 
@@ -450,9 +469,24 @@
 			</div>
 		</section>
 
+		<section class="section" aria-labelledby="accordion-heading">
+			<div class="section-heading">
+				<p class="eyebrow">11 · Disclosure</p>
+				<h2 id="accordion-heading">Accordion</h2>
+				<p>Use accordions to progressively reveal related details without overwhelming the page.</p>
+			</div>
+
+			<div class="input-showcase accordion-showcase">
+				<div class="input-group">
+					<span class="type-label">Single item open</span>
+					<Accordion items={accordionItems} defaultValue="interface" />
+				</div>
+			</div>
+		</section>
+
 		<section class="section tokens" aria-labelledby="tokens-heading">
 			<div class="section-heading">
-				<p class="eyebrow">11 · Usage</p>
+				<p class="eyebrow">12 · Usage</p>
 				<h2 id="tokens-heading">Semantic HTML first</h2>
 				<p>
 					Use the correct heading level for the document structure. The theme handles the visual
