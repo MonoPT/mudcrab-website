@@ -17,6 +17,7 @@
 	import CodeBlock from '../../components/CodeBlock.svelte' with { wake: 'visible' };
 	import Pagination from '../../components/Pagination.svelte' with { wake: 'visible' };
 	import BrandMark from '../../components/BrandMark.svelte';
+	import SectionHeader from '../../components/SectionHeader.svelte';
 
 	let searchValue = $state('');
 	let category = $state<string | undefined>(undefined);
@@ -130,14 +131,12 @@ if (profile.ready) {
 
 	<main>
 		<section class="section" aria-labelledby="typography-heading">
-			<div class="section-heading">
-				<p class="eyebrow">01 · Foundations</p>
-				<h2 id="typography-heading">Typography</h2>
-				<p>
-					Cinzel brings an engraved, considered voice to headings. Inter keeps body copy, menus,
-					labels, and controls practical and readable.
-				</p>
-			</div>
+			<SectionHeader
+				id="typography-heading"
+				eyebrow="01 · Foundations"
+				title="Typography"
+				description="Cinzel brings an engraved, considered voice to headings. Inter keeps body copy, menus, labels, and controls practical and readable."
+			/>
 
 			<div class="specimen-grid">
 				<div class="type-specimen">
