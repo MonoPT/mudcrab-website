@@ -18,6 +18,7 @@
 	import Pagination from '../../components/Pagination.svelte' with { wake: 'visible' };
 	import BrandMark from '../../components/BrandMark.svelte';
 	import SectionHeader from '../../components/SectionHeader.svelte';
+	import Divider from '../../components/Divider.svelte';
 
 	let searchValue = $state('');
 	let category = $state<string | undefined>(undefined);
@@ -127,7 +128,7 @@ if (profile.ready) {
 		</div>
 	</header>
 
-	<div class="rule" aria-hidden="true"></div>
+	<Divider spacing="lg" label="End of introduction" />
 
 	<main>
 		<section class="section" aria-labelledby="typography-heading">
