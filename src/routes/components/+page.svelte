@@ -7,14 +7,21 @@
 	import TextInput from '../../components/TextInput.svelte';
 	import Select from '../../components/Select.svelte' with { wake: 'load' };
 	import Checkbox from '../../components/Checkbox.svelte' with { wake: 'load' };
+	import RadioGroup from '../../components/RadioGroup.svelte' with { wake: 'load' };
 
 	let searchValue = $state('');
 	let category = $state<string | undefined>(undefined);
+	let radioValue = $state<string | undefined>('balanced');
 	const categoryItems = [
 		{ label: 'All categories', value: 'all' },
 		{ label: 'Interface', value: 'interface' },
 		{ label: 'Installation', value: 'installation' },
 		{ label: 'Updates', value: 'updates' }
+	];
+	const radioItems = [
+		{ label: 'Performance', value: 'performance', description: 'Prioritize a faster experience.' },
+		{ label: 'Balanced', value: 'balanced', description: 'A considered default for most players.' },
+		{ label: 'Immersion', value: 'immersion', description: 'Keep the atmosphere front and center.' }
 	];
 </script>
 
@@ -380,9 +387,40 @@
 			</div>
 		</section>
 
+		<section class="section" aria-labelledby="radio-heading">
+			<div class="section-heading">
+				<p class="eyebrow">09 · Forms</p>
+				<h2 id="radio-heading">Radio group</h2>
+				<p>
+					Radio groups are for mutually exclusive choices where the user can select only one option.
+				</p>
+			</div>
+
+			<div class="input-showcase radio-showcase">
+				<div class="input-group">
+					<RadioGroup
+						id="interface-mode"
+						label="Interface mode"
+						items={radioItems}
+						bind:value={radioValue}
+					/>
+				</div>
+				<div class="input-group">
+					<RadioGroup
+						id="disabled-mode"
+						label="Disabled group"
+						items={radioItems}
+						value="balanced"
+						disabled
+						orientation="horizontal"
+					/>
+				</div>
+			</div>
+		</section>
+
 		<section class="section tokens" aria-labelledby="tokens-heading">
 			<div class="section-heading">
-				<p class="eyebrow">09 · Usage</p>
+				<p class="eyebrow">10 · Usage</p>
 				<h2 id="tokens-heading">Semantic HTML first</h2>
 				<p>
 					Use the correct heading level for the document structure. The theme handles the visual
