@@ -4,6 +4,7 @@
 	import favicon from '$lib/assets/favicon.svg';
 	import BrandMark from '../components/BrandMark.svelte';
 	import SiteHeader from '../components/SiteHeader.svelte' with { wake: 'load' };
+	import PageShell from '../components/PageShell.svelte';
 
 	let { children } = $props();
 	const navigation = $derived([
@@ -18,4 +19,6 @@
 	{#snippet brand()}<BrandMark subtitle="Design system" />{/snippet}
 </SiteHeader>
 
-{@render children()}
+<PageShell>
+	{@render children()}
+</PageShell>
