@@ -16,6 +16,7 @@
 	import Modal from '../../components/Modal.svelte' with { wake: 'load' };
 	import CodeBlock from '../../components/CodeBlock.svelte' with { wake: 'visible' };
 	import Pagination from '../../components/Pagination.svelte' with { wake: 'visible' };
+	import BrandMark from '../../components/BrandMark.svelte';
 
 	let searchValue = $state('');
 	let category = $state<string | undefined>(undefined);
@@ -114,7 +115,7 @@ if (profile.ready) {
 
 <div class="showcase">
 	<header class="hero">
-		<div class="hero-mark" aria-hidden="true">ᛉ</div>
+		<BrandMark compact />
 		<div>
 			<p class="eyebrow">Mudcrab · Design system</p>
 			<h1>Components</h1>
@@ -688,7 +689,7 @@ if (profile.ready) {
 		gap: 1.5rem;
 		max-width: 48rem;
 	}
-	.hero-mark {
+	.hero :global(.brand-symbol) {
 		display: grid;
 		width: 4.5rem;
 		height: 4.5rem;
@@ -699,7 +700,7 @@ if (profile.ready) {
 		font: 2.5rem var(--font-display);
 		transform: rotate(45deg);
 	}
-	.hero-mark::first-letter {
+	.hero :global(.brand-symbol)::first-letter {
 		display: block;
 		transform: rotate(-45deg);
 	}
@@ -940,7 +941,7 @@ if (profile.ready) {
 		.hero {
 			align-items: flex-start;
 		}
-		.hero-mark {
+		.hero :global(.brand-symbol) {
 			width: 3.25rem;
 			height: 3.25rem;
 			font-size: 1.75rem;
