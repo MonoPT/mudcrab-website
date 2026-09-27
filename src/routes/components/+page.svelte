@@ -15,12 +15,14 @@
 	import Tooltip from '../../components/Tooltip.svelte' with { wake: 'load' };
 	import Modal from '../../components/Modal.svelte' with { wake: 'load' };
 	import CodeBlock from '../../components/CodeBlock.svelte' with { wake: 'visible' };
+	import Pagination from '../../components/Pagination.svelte' with { wake: 'visible' };
 
 	let searchValue = $state('');
 	let category = $state<string | undefined>(undefined);
 	let radioValue = $state<string | undefined>('balanced');
 	let soundEnabled = $state(true);
 	let activeTab = $state<string | undefined>('overview');
+	let currentPage = $state(2);
 
 	const categoryItems = [
 		{ label: 'All categories', value: 'all' },
@@ -632,6 +634,24 @@ if (profile.ready) {
 			</div>
 		</section>
 
+		<section class="section" aria-labelledby="pagination-heading">
+			<div class="section-heading">
+				<p class="eyebrow">17 · Navigation</p>
+				<h2 id="pagination-heading">Pagination</h2>
+				<p>
+					Use pagination to move through larger collections while keeping the current position clear
+					and keyboard accessible.
+				</p>
+			</div>
+
+			<div class="pagination-showcase">
+				<div class="input-group">
+					<span class="type-label">Controlled pages</span>
+					<Pagination bind:page={currentPage} totalPages={5} label="Example pages" />
+				</div>
+			</div>
+		</section>
+
 		<section class="section tokens" aria-labelledby="tokens-heading">
 			<div class="section-heading">
 				<p class="eyebrow">16 · Usage</p>
@@ -652,7 +672,7 @@ if (profile.ready) {
 
 	<footer>
 		<span class="eyebrow">Next</span>
-		<p>Pagination is next, followed by the remaining layout primitives and accessibility review.</p>
+		<p>Layout primitives and an accessibility review are next.</p>
 	</footer>
 </div>
 
@@ -785,6 +805,7 @@ if (profile.ready) {
 		grid-template-columns: repeat(3, 1fr);
 		gap: 1rem;
 	}
+	.pagination-showcase,
 	.code-showcase {
 		display: grid;
 		width: 100%;
@@ -793,6 +814,7 @@ if (profile.ready) {
 		border: 1px solid var(--color-border);
 		background: var(--color-border);
 	}
+	.pagination-showcase .input-group,
 	.code-showcase .input-group {
 		width: 100%;
 		min-width: 0;
