@@ -3,6 +3,7 @@
 	import Button from '../../components/Button.svelte';
 		import Link from '../../components/Link.svelte';
 			import Badge from '../../components/Badge.svelte';
+				import Card from '../../components/Card.svelte';
 </script>
 
 {#snippet arrowIcon()}
@@ -23,6 +24,10 @@
 
 {#snippet warningIcon()}
 	<AlertTriangle size={14} strokeWidth={1.75} />
+{/snippet}
+
+{#snippet cardAction()}
+	<Link href="/components" arrow>Read more</Link>
 {/snippet}
 
 <svelte:head>
@@ -205,9 +210,41 @@
 			</div>
 		</section>
 
+		<section class="section" aria-labelledby="cards-heading">
+			<div class="section-heading">
+				<p class="eyebrow">05 · Surfaces</p>
+				<h2 id="cards-heading">Cards</h2>
+				<p>Cards group related content into quiet, bordered surfaces with clear hierarchy and optional interaction.</p>
+			</div>
+
+			<div class="card-showcase">
+				<Card
+					variant="feature"
+					eyebrow="Feature card"
+					title="More control"
+					description="Additional options and customization, presented with a little more room to breathe."
+					footer={cardAction}
+				/>
+				<Card
+					variant="interactive"
+					href="/components"
+					eyebrow="Blog card"
+					title="Designing for immersion"
+					description="Thoughts on UI design in Skyrim and how to improve the player experience."
+				/>
+				<Card
+					variant="media"
+					eyebrow="Gallery card"
+					title="Inventory redesign"
+					description="A clearer, more organized inventory interface."
+					image="https://picsum.photos/seed/mudcrab-gallery/800/450"
+				/>
+			</div>
+		</section>
+
 		<section class="section tokens" aria-labelledby="tokens-heading">
 			<div class="section-heading">
-				<p class="eyebrow">05 · Usage</p>
+				<p class="eyebrow">06 · Usage</p>
 				<h2 id="tokens-heading">Semantic HTML first</h2>
 				<p>Use the correct heading level for the document structure. The theme handles the visual hierarchy.</p>
 			</div>
@@ -253,6 +290,8 @@
 	.button-showcase { display: grid; gap: 1px; border: 1px solid var(--color-border); background: var(--color-border); }
 	.link-showcase { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1px; border: 1px solid var(--color-border); background: var(--color-border); }
 	.badge-showcase { display: grid; gap: 1px; border: 1px solid var(--color-border); background: var(--color-border); }
+	.card-showcase { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; }
+
 	.badge-group { display: grid; gap: 1rem; padding: 1.5rem; background: var(--color-surface); }
 	.badge-row { display: flex; flex-wrap: wrap; align-items: center; gap: .75rem; }
 	.link-example { display: grid; align-content: start; gap: 1rem; min-height: 8rem; padding: 1.5rem; background: var(--color-surface); }
@@ -267,6 +306,6 @@
 	footer { display: flex; gap: 1rem; align-items: baseline; margin-top: clamp(4rem, 10vw, 8rem); padding-top: 1.5rem; border-top: 1px solid var(--color-border); }
 	footer .eyebrow { flex: 0 0 auto; margin: 0; }
 	footer p { font-size: var(--text-sm); }
-	@media (max-width: 700px) { .showcase { width: min(100% - 1.5rem, var(--content-wide)); } .hero { align-items: flex-start; } .hero-mark { width: 3.25rem; height: 3.25rem; font-size: 1.75rem; } .specimen-grid { grid-template-columns: 1fr; } .link-showcase { grid-template-columns: repeat(2, 1fr); } .token-grid { grid-template-columns: repeat(2, 1fr); } .type-row { grid-template-columns: 4.5rem 1fr; padding-inline: 1rem; } footer { display: block; } footer p { margin-top: .75rem; } }
+	@media (max-width: 700px) { .showcase { width: min(100% - 1.5rem, var(--content-wide)); } .hero { align-items: flex-start; } .hero-mark { width: 3.25rem; height: 3.25rem; font-size: 1.75rem; } .specimen-grid { grid-template-columns: 1fr; } .link-showcase { grid-template-columns: repeat(2, 1fr); } .card-showcase { grid-template-columns: 1fr; } .token-grid { grid-template-columns: repeat(2, 1fr); } .type-row { grid-template-columns: 4.5rem 1fr; padding-inline: 1rem; } footer { display: block; } footer p { margin-top: .75rem; } }
 	@media (max-width: 420px) { .type-row { grid-template-columns: 1fr; gap: .5rem; } .link-showcase { grid-template-columns: 1fr; } .token-grid { grid-template-columns: 1fr; } }
 </style>

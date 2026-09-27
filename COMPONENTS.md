@@ -108,6 +108,7 @@ Base bordered surface for feature, blog, gallery, and utility content.
 | `title` | `string` | `undefined` | Card heading. |
 | `description` | `string` | `undefined` | Supporting copy. |
 | `image` | `string` | `undefined` | Optional media URL. |
+| `imageAlt` | `string` | `title` | Accessible image description. |
 | `footer` | `Snippet` | `undefined` | Footer content/action slot. |
 
 #### `Badge.svelte`
