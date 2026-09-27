@@ -91,6 +91,8 @@
 
 	@media (prefers-reduced-motion: reduce) {
 		.link,
-		.link-icon { transition: none; }
+		.link-icon {
+			transition: none;
+		}
 	}
 </style>

@@ -117,21 +117,70 @@
 		border-radius: var(--radius-md);
 	}
 
-	.sm { min-height: 2rem; padding: 0.5rem 0.75rem; }
-	.lg { min-height: 3rem; padding: 0.8rem 1.25rem; }
-	.icon-only.sm { width: 2rem; min-width: 2rem; }
-	.icon-only.lg { width: 3rem; min-width: 3rem; }
+	.sm {
+		min-height: 2rem;
+		padding: 0.5rem 0.75rem;
+	}
+	.lg {
+		min-height: 3rem;
+		padding: 0.8rem 1.25rem;
+	}
+	.icon-only.sm {
+		width: 2rem;
+		min-width: 2rem;
+	}
+	.icon-only.lg {
+		width: 3rem;
+		min-width: 3rem;
+	}
 
 	.icon,
-	.spinner { display: inline-flex; flex: 0 0 auto; align-items: center; justify-content: center; }
-	.icon :global(svg) { width: 1rem; height: 1rem; }
-	.icon-only :global(svg) { width: 1.1rem; height: 1.1rem; }
-	.icon-only.sm :global(svg) { width: 1.05rem; height: 1.05rem; }
-	.icon-only.lg :global(svg) { width: 1.2rem; height: 1.2rem; }
-	.spinner { width: 0.9rem; height: 0.9rem; border: 2px solid currentColor; border-right-color: transparent; border-radius: 50%; animation: spin 0.7s linear infinite; }
+	.spinner {
+		display: inline-flex;
+		flex: 0 0 auto;
+		align-items: center;
+		justify-content: center;
+	}
+	.icon :global(svg) {
+		width: 1rem;
+		height: 1rem;
+	}
+	.icon-only :global(svg) {
+		width: 1.1rem;
+		height: 1.1rem;
+	}
+	.icon-only.sm :global(svg) {
+		width: 1.05rem;
+		height: 1.05rem;
+	}
+	.icon-only.lg :global(svg) {
+		width: 1.2rem;
+		height: 1.2rem;
+	}
+	.spinner {
+		width: 0.9rem;
+		height: 0.9rem;
+		border: 2px solid currentColor;
+		border-right-color: transparent;
+		border-radius: 50%;
+		animation: spin 0.7s linear infinite;
+	}
 
-	:disabled { opacity: 0.45; cursor: not-allowed; }
+	:disabled {
+		opacity: 0.45;
+		cursor: not-allowed;
+	}
 
-	@keyframes spin { to { transform: rotate(360deg); } }
-	@media (prefers-reduced-motion: reduce) { .spinner { animation: none; border-right-color: currentColor; opacity: 0.7; } }
+	@keyframes spin {
+		to {
+			transform: rotate(360deg);
+		}
+	}
+	@media (prefers-reduced-motion: reduce) {
+		.spinner {
+			animation: none;
+			border-right-color: currentColor;
+			opacity: 0.7;
+		}
+	}
 </style>

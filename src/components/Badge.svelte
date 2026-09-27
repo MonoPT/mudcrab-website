@@ -40,16 +40,51 @@
 		white-space: nowrap;
 	}
 
-	.sm { min-height: 1.5rem; padding: 0.35rem 0.6rem; }
-	.md { min-height: 1.9rem; padding: 0.45rem 0.8rem; font-size: var(--text-sm); }
+	.sm {
+		min-height: 1.5rem;
+		padding: 0.35rem 0.6rem;
+	}
+	.md {
+		min-height: 1.9rem;
+		padding: 0.45rem 0.8rem;
+		font-size: var(--text-sm);
+	}
 
-	.neutral { border-color: var(--color-border-strong); color: var(--color-text-muted); }
-	.accent { border-color: color-mix(in srgb, var(--color-accent), transparent 45%); color: var(--color-accent); background: color-mix(in srgb, var(--color-accent), transparent 92%); }
-	.success { border-color: color-mix(in srgb, var(--color-success), transparent 45%); color: var(--color-success); background: color-mix(in srgb, var(--color-success), transparent 92%); }
-	.warning { border-color: color-mix(in srgb, var(--color-warning), transparent 45%); color: var(--color-warning); background: color-mix(in srgb, var(--color-warning), transparent 92%); }
-	.danger { border-color: color-mix(in srgb, var(--color-danger), transparent 45%); color: var(--color-danger); background: color-mix(in srgb, var(--color-danger), transparent 92%); }
+	.neutral {
+		border-color: var(--color-border-strong);
+		color: var(--color-text-muted);
+	}
+	.accent {
+		border-color: color-mix(in srgb, var(--color-accent), transparent 45%);
+		color: var(--color-accent);
+		background: color-mix(in srgb, var(--color-accent), transparent 92%);
+	}
+	.success {
+		border-color: color-mix(in srgb, var(--color-success), transparent 45%);
+		color: var(--color-success);
+		background: color-mix(in srgb, var(--color-success), transparent 92%);
+	}
+	.warning {
+		border-color: color-mix(in srgb, var(--color-warning), transparent 45%);
+		color: var(--color-warning);
+		background: color-mix(in srgb, var(--color-warning), transparent 92%);
+	}
+	.danger {
+		border-color: color-mix(in srgb, var(--color-danger), transparent 45%);
+		color: var(--color-danger);
+		background: color-mix(in srgb, var(--color-danger), transparent 92%);
+	}
 
-	.icon { display: inline-flex; align-items: center; }
-	.icon :global(svg) { width: 0.8rem; height: 0.8rem; }
-	.md .icon :global(svg) { width: 0.95rem; height: 0.95rem; }
+	.icon {
+		display: inline-flex;
+		align-items: center;
+	}
+	.icon :global(svg) {
+		width: 0.8rem;
+		height: 0.8rem;
+	}
+	.md .icon :global(svg) {
+		width: 0.95rem;
+		height: 0.95rem;
+	}
 </style>

@@ -1,20 +1,21 @@
 <script lang="ts">
 	import { AlertTriangle, ArrowRight, Check, Download, Info, Plus, X } from '@lucide/svelte';
 	import Button from '../../components/Button.svelte';
-		import Link from '../../components/Link.svelte';
-			import Badge from '../../components/Badge.svelte';
-				import Card from '../../components/Card.svelte';
-					import TextInput from '../../components/TextInput.svelte';
-					import Select from '../../components/Select.svelte' with { wake: 'load' };
+	import Link from '../../components/Link.svelte';
+	import Badge from '../../components/Badge.svelte';
+	import Card from '../../components/Card.svelte';
+	import TextInput from '../../components/TextInput.svelte';
+	import Select from '../../components/Select.svelte' with { wake: 'load' };
+	import Checkbox from '../../components/Checkbox.svelte' with { wake: 'load' };
 
-					let searchValue = $state('');
-					let category = $state<string | undefined>(undefined);
-					const categoryItems = [
-						{ label: 'All categories', value: 'all' },
-						{ label: 'Interface', value: 'interface' },
-						{ label: 'Installation', value: 'installation' },
-						{ label: 'Updates', value: 'updates' }
-					];
+	let searchValue = $state('');
+	let category = $state<string | undefined>(undefined);
+	const categoryItems = [
+		{ label: 'All categories', value: 'all' },
+		{ label: 'Interface', value: 'interface' },
+		{ label: 'Installation', value: 'installation' },
+		{ label: 'Updates', value: 'updates' }
+	];
 </script>
 
 {#snippet arrowIcon()}
@@ -56,8 +57,8 @@
 			<p class="eyebrow">Mudcrab · Design system</p>
 			<h1>Components</h1>
 			<p class="hero-copy">
-				A reusable component library for a clear, immersive interface inspired by Skyrim's
-				quiet, weathered UI language.
+				A reusable component library for a clear, immersive interface inspired by Skyrim's quiet,
+				weathered UI language.
 			</p>
 		</div>
 	</header>
@@ -70,8 +71,8 @@
 				<p class="eyebrow">01 · Foundations</p>
 				<h2 id="typography-heading">Typography</h2>
 				<p>
-					Cinzel brings an engraved, considered voice to headings. Inter keeps body copy,
-					menus, labels, and controls practical and readable.
+					Cinzel brings an engraved, considered voice to headings. Inter keeps body copy, menus,
+					labels, and controls practical and readable.
 				</p>
 			</div>
 
@@ -107,8 +108,8 @@
 					<div class="note">
 						<span class="type-label">Body</span>
 						<p>
-							Mudcrab enhances Skyrim's user interface with a calmer visual rhythm,
-							clearer hierarchy, and a more immersive reading experience.
+							Mudcrab enhances Skyrim's user interface with a calmer visual rhythm, clearer
+							hierarchy, and a more immersive reading experience.
 						</p>
 					</div>
 					<div class="note">
@@ -149,7 +150,9 @@
 						<Button variant="secondary" leading={downloadIcon}>Download</Button>
 						<Button variant="button" label="Add item"><Plus size={17} strokeWidth={1.75} /></Button>
 						<Button variant="button" label="Close"><X size={17} strokeWidth={1.75} /></Button>
-						<Button variant="button" label="Next" size="sm"><ArrowRight size={15} strokeWidth={1.75} /></Button>
+						<Button variant="button" label="Next" size="sm"
+							><ArrowRight size={15} strokeWidth={1.75} /></Button
+						>
 					</div>
 				</div>
 
@@ -169,7 +172,9 @@
 			<div class="section-heading">
 				<p class="eyebrow">03 · Navigation</p>
 				<h2 id="links-heading">Links</h2>
-				<p>Links carry navigation and inline reading actions without competing with primary buttons.</p>
+				<p>
+					Links carry navigation and inline reading actions without competing with primary buttons.
+				</p>
 			</div>
 
 			<div class="link-showcase">
@@ -187,7 +192,11 @@
 				</div>
 				<div class="link-example">
 					<span class="type-label">Inline link</span>
-					<p>Read the <Link href="/components" variant="inline" underline={false}>component documentation</Link> to learn more.</p>
+					<p>
+						Read the <Link href="/components" variant="inline" underline={false}
+							>component documentation</Link
+						> to learn more.
+					</p>
 				</div>
 			</div>
 		</section>
@@ -225,7 +234,10 @@
 			<div class="section-heading">
 				<p class="eyebrow">05 · Surfaces</p>
 				<h2 id="cards-heading">Cards</h2>
-				<p>Cards group related content into quiet, bordered surfaces with clear hierarchy and optional interaction.</p>
+				<p>
+					Cards group related content into quiet, bordered surfaces with clear hierarchy and
+					optional interaction.
+				</p>
 			</div>
 
 			<div class="card-showcase">
@@ -257,23 +269,52 @@
 			<div class="section-heading">
 				<p class="eyebrow">06 · Forms</p>
 				<h2 id="inputs-heading">Text inputs</h2>
-				<p>Inputs keep labels, help text, and validation messages close to the control they describe.</p>
+				<p>
+					Inputs keep labels, help text, and validation messages close to the control they describe.
+				</p>
 			</div>
 
 			<div class="input-showcase">
 				<div class="input-group">
 					<span class="type-label">Default states</span>
 					<div class="input-grid">
-						<TextInput id="component-search" label="Search" type="search" placeholder="Search components..." bind:value={searchValue} />
-						<TextInput id="component-email" label="Email address" type="email" placeholder="you@example.com" description="We will only use this for account updates." />
+						<TextInput
+							id="component-search"
+							label="Search"
+							type="search"
+							placeholder="Search components..."
+							bind:value={searchValue}
+						/>
+						<TextInput
+							id="component-email"
+							label="Email address"
+							type="email"
+							placeholder="you@example.com"
+							description="We will only use this for account updates."
+						/>
 					</div>
 				</div>
 				<div class="input-group">
 					<span class="type-label">Validation and states</span>
 					<div class="input-grid">
-						<TextInput id="component-required" label="Required field" placeholder="Enter a value" required />
-						<TextInput id="component-error" label="Username" value="mud" error="Username must be at least 4 characters." />
-						<TextInput id="component-disabled" label="Disabled input" value="Unavailable" disabled />
+						<TextInput
+							id="component-required"
+							label="Required field"
+							placeholder="Enter a value"
+							required
+						/>
+						<TextInput
+							id="component-error"
+							label="Username"
+							value="mud"
+							error="Username must be at least 4 characters."
+						/>
+						<TextInput
+							id="component-disabled"
+							label="Disabled input"
+							value="Unavailable"
+							disabled
+						/>
 					</div>
 				</div>
 			</div>
@@ -283,14 +324,22 @@
 			<div class="section-heading">
 				<p class="eyebrow">07 · Forms</p>
 				<h2 id="select-heading">Select</h2>
-				<p>A styled select with keyboard navigation and predictable focus behavior, powered by bits-ui.</p>
+				<p>
+					A styled select with keyboard navigation and predictable focus behavior, powered by
+					bits-ui.
+				</p>
 			</div>
 
 			<div class="input-showcase select-showcase">
 				<div class="input-group">
 					<span class="type-label">Selection states</span>
 					<div class="input-grid">
-						<Select id="component-category" label="Category" items={categoryItems} bind:value={category} />
+						<Select
+							id="component-category"
+							label="Category"
+							items={categoryItems}
+							bind:value={category}
+						/>
 						<Select
 							id="component-disabled-select"
 							label="Disabled select"
@@ -303,11 +352,42 @@
 			</div>
 		</section>
 
+		<section class="section" aria-labelledby="checkbox-heading">
+			<div class="section-heading">
+				<p class="eyebrow">08 · Forms</p>
+				<h2 id="checkbox-heading">Checkbox</h2>
+				<p>Use checkboxes for independent settings, preferences, and consent choices.</p>
+			</div>
+
+			<div class="input-showcase checkbox-showcase">
+				<div class="input-group">
+					<span class="type-label">Checkbox states</span>
+					<div class="checkbox-grid">
+						<Checkbox
+							id="feature-checkbox"
+							label="Enable feature"
+							description="Allow this feature to be used in your workspace."
+							checked
+						/>
+						<Checkbox
+							id="notifications-checkbox"
+							label="Enable notifications"
+							description="Receive updates when something changes."
+						/>
+						<Checkbox id="disabled-checkbox" label="Unavailable setting" disabled />
+					</div>
+				</div>
+			</div>
+		</section>
+
 		<section class="section tokens" aria-labelledby="tokens-heading">
 			<div class="section-heading">
-				<p class="eyebrow">08 · Usage</p>
+				<p class="eyebrow">09 · Usage</p>
 				<h2 id="tokens-heading">Semantic HTML first</h2>
-				<p>Use the correct heading level for the document structure. The theme handles the visual hierarchy.</p>
+				<p>
+					Use the correct heading level for the document structure. The theme handles the visual
+					hierarchy.
+				</p>
 			</div>
 			<div class="token-grid">
 				<div class="token-card"><code>&lt;h1&gt;</code><span>Page title</span></div>
@@ -325,52 +405,283 @@
 </div>
 
 <style>
-	.showcase { width: min(100% - 2rem, var(--content-wide)); margin: 0 auto; padding: clamp(2rem, 7vw, 6rem) 0; }
-	.hero { display: flex; align-items: center; gap: 1.5rem; max-width: 48rem; }
-	.hero-mark { display: grid; width: 4.5rem; height: 4.5rem; flex: 0 0 auto; place-items: center; border: 1px solid var(--color-border-strong); color: var(--color-accent); font: 2.5rem var(--font-display); transform: rotate(45deg); }
-	.hero-mark::first-letter { display: block; transform: rotate(-45deg); }
-	.hero h1 { margin-top: .4rem; }
-	.hero-copy { margin-top: 1.25rem; max-width: 42rem; font-size: var(--text-lg); }
-	.eyebrow { margin-bottom: .7rem; }
-	.rule { height: 1px; margin: clamp(2.5rem, 8vw, 6rem) 0; background: linear-gradient(90deg, var(--color-border), transparent); }
-	.section + .section { margin-top: clamp(4rem, 10vw, 8rem); }
-	.section-heading { max-width: 42rem; margin-bottom: 2.5rem; }
-	.section-heading h2 { margin-bottom: 1rem; }
-	.specimen-grid { display: grid; grid-template-columns: minmax(0, 1.5fr) minmax(16rem, .75fr); gap: 1px; border: 1px solid var(--color-border); background: var(--color-border); }
-	.type-specimen, .type-notes { background: var(--color-surface); }
-	.type-row { display: grid; grid-template-columns: 6rem 1fr; align-items: baseline; gap: 1rem; padding: 1.35rem 1.5rem; border-bottom: 1px solid var(--color-border); }
-	.type-row:last-child { border-bottom: 0; }
-	.type-label { display: block; color: var(--color-text-subtle); font: 600 var(--text-xs) var(--font-body); letter-spacing: var(--tracking-label); text-transform: uppercase; }
-	.type-notes { display: grid; align-content: start; }
-	.note { padding: 1.5rem; border-bottom: 1px solid var(--color-border); }
-	.note:last-child { border-bottom: 0; }
-	.note > :not(.type-label) { margin-top: .75rem; }
-	.note .eyebrow { color: var(--color-text-muted); }
-	.note .caption { margin-top: .9rem; }
-	.tokens { padding-top: 1px; }
-	.button-showcase { display: grid; gap: 1px; border: 1px solid var(--color-border); background: var(--color-border); }
-	.link-showcase { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1px; border: 1px solid var(--color-border); background: var(--color-border); }
-	.badge-showcase { display: grid; gap: 1px; border: 1px solid var(--color-border); background: var(--color-border); }
-	.card-showcase { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; }
-	.input-showcase { display: grid; gap: 1px; border: 1px solid var(--color-border); background: var(--color-border); }
-	.input-group { display: grid; gap: 1rem; padding: 1.5rem; background: var(--color-surface); }
-	.input-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1.25rem; }
-	.select-showcase { margin-top: 0; }
+	.showcase {
+		width: min(100% - 2rem, var(--content-wide));
+		margin: 0 auto;
+		padding: clamp(2rem, 7vw, 6rem) 0;
+	}
+	.hero {
+		display: flex;
+		align-items: center;
+		gap: 1.5rem;
+		max-width: 48rem;
+	}
+	.hero-mark {
+		display: grid;
+		width: 4.5rem;
+		height: 4.5rem;
+		flex: 0 0 auto;
+		place-items: center;
+		border: 1px solid var(--color-border-strong);
+		color: var(--color-accent);
+		font: 2.5rem var(--font-display);
+		transform: rotate(45deg);
+	}
+	.hero-mark::first-letter {
+		display: block;
+		transform: rotate(-45deg);
+	}
+	.hero h1 {
+		margin-top: 0.4rem;
+	}
+	.hero-copy {
+		margin-top: 1.25rem;
+		max-width: 42rem;
+		font-size: var(--text-lg);
+	}
+	.eyebrow {
+		margin-bottom: 0.7rem;
+	}
+	.rule {
+		height: 1px;
+		margin: clamp(2.5rem, 8vw, 6rem) 0;
+		background: linear-gradient(90deg, var(--color-border), transparent);
+	}
+	.section + .section {
+		margin-top: clamp(4rem, 10vw, 8rem);
+	}
+	.section-heading {
+		max-width: 42rem;
+		margin-bottom: 2.5rem;
+	}
+	.section-heading h2 {
+		margin-bottom: 1rem;
+	}
+	.specimen-grid {
+		display: grid;
+		grid-template-columns: minmax(0, 1.5fr) minmax(16rem, 0.75fr);
+		gap: 1px;
+		border: 1px solid var(--color-border);
+		background: var(--color-border);
+	}
+	.type-specimen,
+	.type-notes {
+		background: var(--color-surface);
+	}
+	.type-row {
+		display: grid;
+		grid-template-columns: 6rem 1fr;
+		align-items: baseline;
+		gap: 1rem;
+		padding: 1.35rem 1.5rem;
+		border-bottom: 1px solid var(--color-border);
+	}
+	.type-row:last-child {
+		border-bottom: 0;
+	}
+	.type-label {
+		display: block;
+		color: var(--color-text-subtle);
+		font: 600 var(--text-xs) var(--font-body);
+		letter-spacing: var(--tracking-label);
+		text-transform: uppercase;
+	}
+	.type-notes {
+		display: grid;
+		align-content: start;
+	}
+	.note {
+		padding: 1.5rem;
+		border-bottom: 1px solid var(--color-border);
+	}
+	.note:last-child {
+		border-bottom: 0;
+	}
+	.note > :not(.type-label) {
+		margin-top: 0.75rem;
+	}
+	.note .eyebrow {
+		color: var(--color-text-muted);
+	}
+	.note .caption {
+		margin-top: 0.9rem;
+	}
+	.tokens {
+		padding-top: 1px;
+	}
+	.button-showcase {
+		display: grid;
+		gap: 1px;
+		border: 1px solid var(--color-border);
+		background: var(--color-border);
+	}
+	.link-showcase {
+		display: grid;
+		grid-template-columns: repeat(4, 1fr);
+		gap: 1px;
+		border: 1px solid var(--color-border);
+		background: var(--color-border);
+	}
+	.badge-showcase {
+		display: grid;
+		gap: 1px;
+		border: 1px solid var(--color-border);
+		background: var(--color-border);
+	}
+	.card-showcase {
+		display: grid;
+		grid-template-columns: repeat(3, 1fr);
+		gap: 1rem;
+	}
+	.input-showcase {
+		display: grid;
+		gap: 1px;
+		border: 1px solid var(--color-border);
+		background: var(--color-border);
+	}
+	.input-group {
+		display: grid;
+		gap: 1rem;
+		padding: 1.5rem;
+		background: var(--color-surface);
+	}
+	.input-grid {
+		display: grid;
+		grid-template-columns: repeat(2, minmax(0, 1fr));
+		gap: 1.25rem;
+	}
+	.checkbox-grid {
+		display: grid;
+		grid-template-columns: repeat(3, minmax(0, 1fr));
+		gap: 1.5rem;
+	}
+	.select-showcase {
+		margin-top: 0;
+	}
 
-	.badge-group { display: grid; gap: 1rem; padding: 1.5rem; background: var(--color-surface); }
-	.badge-row { display: flex; flex-wrap: wrap; align-items: center; gap: .75rem; }
-	.link-example { display: grid; align-content: start; gap: 1rem; min-height: 8rem; padding: 1.5rem; background: var(--color-surface); }
-	.link-example p { font-size: var(--text-sm); }
-	.link-example :global(.link) { display: inline-flex; }
-	.button-group { display: grid; gap: 1rem; padding: 1.5rem; background: var(--color-surface); }
-	.button-row { display: flex; flex-wrap: wrap; align-items: center; gap: .75rem; }
-	.token-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: .75rem; }
-	.token-card { display: grid; gap: .65rem; padding: 1.25rem; border: 1px solid var(--color-border); border-radius: var(--radius-md); background: var(--color-surface); }
-	.token-card code { color: var(--color-accent); font: .85rem var(--font-mono); }
-	.token-card span { color: var(--color-text-muted); font-size: var(--text-sm); }
-	footer { display: flex; gap: 1rem; align-items: baseline; margin-top: clamp(4rem, 10vw, 8rem); padding-top: 1.5rem; border-top: 1px solid var(--color-border); }
-	footer .eyebrow { flex: 0 0 auto; margin: 0; }
-	footer p { font-size: var(--text-sm); }
-	@media (max-width: 700px) { .showcase { width: min(100% - 1.5rem, var(--content-wide)); } .hero { align-items: flex-start; } .hero-mark { width: 3.25rem; height: 3.25rem; font-size: 1.75rem; } .specimen-grid { grid-template-columns: 1fr; } .link-showcase { grid-template-columns: repeat(2, 1fr); } .card-showcase { grid-template-columns: 1fr; } .input-grid { grid-template-columns: 1fr; } .token-grid { grid-template-columns: repeat(2, 1fr); } .type-row { grid-template-columns: 4.5rem 1fr; padding-inline: 1rem; } footer { display: block; } footer p { margin-top: .75rem; } }
-	@media (max-width: 420px) { .type-row { grid-template-columns: 1fr; gap: .5rem; } .link-showcase { grid-template-columns: 1fr; } .token-grid { grid-template-columns: 1fr; } }
+	.badge-group {
+		display: grid;
+		gap: 1rem;
+		padding: 1.5rem;
+		background: var(--color-surface);
+	}
+	.badge-row {
+		display: flex;
+		flex-wrap: wrap;
+		align-items: center;
+		gap: 0.75rem;
+	}
+	.link-example {
+		display: grid;
+		align-content: start;
+		gap: 1rem;
+		min-height: 8rem;
+		padding: 1.5rem;
+		background: var(--color-surface);
+	}
+	.link-example p {
+		font-size: var(--text-sm);
+	}
+	.link-example :global(.link) {
+		display: inline-flex;
+	}
+	.button-group {
+		display: grid;
+		gap: 1rem;
+		padding: 1.5rem;
+		background: var(--color-surface);
+	}
+	.button-row {
+		display: flex;
+		flex-wrap: wrap;
+		align-items: center;
+		gap: 0.75rem;
+	}
+	.token-grid {
+		display: grid;
+		grid-template-columns: repeat(4, 1fr);
+		gap: 0.75rem;
+	}
+	.token-card {
+		display: grid;
+		gap: 0.65rem;
+		padding: 1.25rem;
+		border: 1px solid var(--color-border);
+		border-radius: var(--radius-md);
+		background: var(--color-surface);
+	}
+	.token-card code {
+		color: var(--color-accent);
+		font: 0.85rem var(--font-mono);
+	}
+	.token-card span {
+		color: var(--color-text-muted);
+		font-size: var(--text-sm);
+	}
+	footer {
+		display: flex;
+		gap: 1rem;
+		align-items: baseline;
+		margin-top: clamp(4rem, 10vw, 8rem);
+		padding-top: 1.5rem;
+		border-top: 1px solid var(--color-border);
+	}
+	footer .eyebrow {
+		flex: 0 0 auto;
+		margin: 0;
+	}
+	footer p {
+		font-size: var(--text-sm);
+	}
+	@media (max-width: 700px) {
+		.showcase {
+			width: min(100% - 1.5rem, var(--content-wide));
+		}
+		.hero {
+			align-items: flex-start;
+		}
+		.hero-mark {
+			width: 3.25rem;
+			height: 3.25rem;
+			font-size: 1.75rem;
+		}
+		.specimen-grid {
+			grid-template-columns: 1fr;
+		}
+		.link-showcase {
+			grid-template-columns: repeat(2, 1fr);
+		}
+		.card-showcase {
+			grid-template-columns: 1fr;
+		}
+		.input-grid,
+		.checkbox-grid {
+			grid-template-columns: 1fr;
+		}
+		.token-grid {
+			grid-template-columns: repeat(2, 1fr);
+		}
+		.type-row {
+			grid-template-columns: 4.5rem 1fr;
+			padding-inline: 1rem;
+		}
+		footer {
+			display: block;
+		}
+		footer p {
+			margin-top: 0.75rem;
+		}
+	}
+	@media (max-width: 420px) {
+		.type-row {
+			grid-template-columns: 1fr;
+			gap: 0.5rem;
+		}
+		.link-showcase {
+			grid-template-columns: 1fr;
+		}
+		.token-grid {
+			grid-template-columns: 1fr;
+		}
+	}
 </style>
