@@ -13,12 +13,14 @@
 	import Tabs from '../../components/Tabs.svelte' with { wake: 'load' };
 	import Alert from '../../components/Alert.svelte' with { wake: 'load' };
 	import Tooltip from '../../components/Tooltip.svelte' with { wake: 'load' };
+	import Modal from '../../components/Modal.svelte' with { wake: 'load' };
 
 	let searchValue = $state('');
 	let category = $state<string | undefined>(undefined);
 	let radioValue = $state<string | undefined>('balanced');
 	let soundEnabled = $state(true);
 	let activeTab = $state<string | undefined>('overview');
+
 	const categoryItems = [
 		{ label: 'All categories', value: 'all' },
 		{ label: 'Interface', value: 'interface' },
@@ -575,9 +577,39 @@
 			</div>
 		</section>
 
+		<section class="section" aria-labelledby="modal-heading">
+			<div class="section-heading">
+				<p class="eyebrow">15 · Overlay</p>
+				<h2 id="modal-heading">Modal</h2>
+				<p>
+					Use modals for focused tasks that need a clear decision or a small amount of dedicated
+					space.
+				</p>
+			</div>
+
+			<div class="input-showcase modal-showcase">
+				<div class="input-group">
+					<span class="type-label">Controlled dialog</span>
+					<Modal
+						title="Change load order"
+						description="Review this change before applying it to your current profile."
+					>
+						{#snippet trigger()}Open modal{/snippet}
+						{#snippet content()}
+							<p>Moving this entry may change which resources take priority when the game loads.</p>
+						{/snippet}
+						{#snippet footer()}
+							<button class="modal-action secondary" type="button">Cancel</button>
+							<button class="modal-action primary" type="button">Accept</button>
+						{/snippet}
+					</Modal>
+				</div>
+			</div>
+		</section>
+
 		<section class="section tokens" aria-labelledby="tokens-heading">
 			<div class="section-heading">
-				<p class="eyebrow">15 · Usage</p>
+				<p class="eyebrow">16 · Usage</p>
 				<h2 id="tokens-heading">Semantic HTML first</h2>
 				<p>
 					Use the correct heading level for the document structure. The theme handles the visual
@@ -750,6 +782,7 @@
 		align-items: center;
 		gap: 0.75rem;
 	}
+
 	.input-grid {
 		display: grid;
 		grid-template-columns: repeat(2, minmax(0, 1fr));

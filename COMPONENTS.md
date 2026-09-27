@@ -255,14 +255,19 @@ Non-essential contextual hint for controls and icons.
 
 Dialog for confirmation, forms, and focused content.
 
-| Attribute             | Type      | Default     | Description             |
-| --------------------- | --------- | ----------- | ----------------------- |
-| `open`                | `boolean` | `false`     | Bindable open state.    |
-| `title`               | `string`  | required    | Dialog title.           |
-| `description`         | `string`  | `undefined` | Dialog description.     |
-| `closeOnOutsideClick` | `boolean` | `true`      | Outside-click behavior. |
-| `children`            | `Snippet` | required    | Dialog body.            |
-| `footer`              | `Snippet` | `undefined` | Action area.            |
+| Attribute             | Type      | Default     | Description                                      |
+| --------------------- | --------- | ----------- | ------------------------------------------------ |
+| `open`                | `boolean` | `false`     | Bindable open state.                             |
+| `title`               | `string`  | required    | Dialog title.                                    |
+| `description`         | `string`  | `undefined` | Dialog description.                              |
+| `body`                | `string`  | `undefined` | Serializable dialog body text.                   |
+| `closeOnOutsideClick` | `boolean` | `true`      | Outside-click behavior.                          |
+| `showActions`         | `boolean` | `false`     | Shows built-in Cancel and confirm actions.       |
+| `cancelLabel`         | `string`  | `'Cancel'`  | Built-in cancel action label.                    |
+| `confirmLabel`        | `string`  | `'Accept'`  | Built-in confirm action label.                   |
+| `children`            | `Snippet` | `undefined` | Rich dialog body when not using `body`.          |
+| `footer`              | `Snippet` | `undefined` | Custom footer when `showActions` is false.       |
+| `trigger`             | `Snippet` | `undefined` | Trigger content rendered inside the dialog root. |
 
 ### 6. Data and utility components
 
