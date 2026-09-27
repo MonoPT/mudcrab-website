@@ -4,6 +4,9 @@
 		import Link from '../../components/Link.svelte';
 			import Badge from '../../components/Badge.svelte';
 				import Card from '../../components/Card.svelte';
+					import TextInput from '../../components/TextInput.svelte';
+
+					let searchValue = $state('');
 </script>
 
 {#snippet arrowIcon()}
@@ -242,9 +245,35 @@
 			</div>
 		</section>
 
+		<section class="section" aria-labelledby="inputs-heading">
+			<div class="section-heading">
+				<p class="eyebrow">06 · Forms</p>
+				<h2 id="inputs-heading">Text inputs</h2>
+				<p>Inputs keep labels, help text, and validation messages close to the control they describe.</p>
+			</div>
+
+			<div class="input-showcase">
+				<div class="input-group">
+					<span class="type-label">Default states</span>
+					<div class="input-grid">
+						<TextInput id="component-search" label="Search" type="search" placeholder="Search components..." bind:value={searchValue} />
+						<TextInput id="component-email" label="Email address" type="email" placeholder="you@example.com" description="We will only use this for account updates." />
+					</div>
+				</div>
+				<div class="input-group">
+					<span class="type-label">Validation and states</span>
+					<div class="input-grid">
+						<TextInput id="component-required" label="Required field" placeholder="Enter a value" required />
+						<TextInput id="component-error" label="Username" value="mud" error="Username must be at least 4 characters." />
+						<TextInput id="component-disabled" label="Disabled input" value="Unavailable" disabled />
+					</div>
+				</div>
+			</div>
+		</section>
+
 		<section class="section tokens" aria-labelledby="tokens-heading">
 			<div class="section-heading">
-				<p class="eyebrow">06 · Usage</p>
+				<p class="eyebrow">07 · Usage</p>
 				<h2 id="tokens-heading">Semantic HTML first</h2>
 				<p>Use the correct heading level for the document structure. The theme handles the visual hierarchy.</p>
 			</div>
@@ -291,6 +320,9 @@
 	.link-showcase { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1px; border: 1px solid var(--color-border); background: var(--color-border); }
 	.badge-showcase { display: grid; gap: 1px; border: 1px solid var(--color-border); background: var(--color-border); }
 	.card-showcase { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; }
+	.input-showcase { display: grid; gap: 1px; border: 1px solid var(--color-border); background: var(--color-border); }
+	.input-group { display: grid; gap: 1rem; padding: 1.5rem; background: var(--color-surface); }
+	.input-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1.25rem; }
 
 	.badge-group { display: grid; gap: 1rem; padding: 1.5rem; background: var(--color-surface); }
 	.badge-row { display: flex; flex-wrap: wrap; align-items: center; gap: .75rem; }
@@ -306,6 +338,6 @@
 	footer { display: flex; gap: 1rem; align-items: baseline; margin-top: clamp(4rem, 10vw, 8rem); padding-top: 1.5rem; border-top: 1px solid var(--color-border); }
 	footer .eyebrow { flex: 0 0 auto; margin: 0; }
 	footer p { font-size: var(--text-sm); }
-	@media (max-width: 700px) { .showcase { width: min(100% - 1.5rem, var(--content-wide)); } .hero { align-items: flex-start; } .hero-mark { width: 3.25rem; height: 3.25rem; font-size: 1.75rem; } .specimen-grid { grid-template-columns: 1fr; } .link-showcase { grid-template-columns: repeat(2, 1fr); } .card-showcase { grid-template-columns: 1fr; } .token-grid { grid-template-columns: repeat(2, 1fr); } .type-row { grid-template-columns: 4.5rem 1fr; padding-inline: 1rem; } footer { display: block; } footer p { margin-top: .75rem; } }
+	@media (max-width: 700px) { .showcase { width: min(100% - 1.5rem, var(--content-wide)); } .hero { align-items: flex-start; } .hero-mark { width: 3.25rem; height: 3.25rem; font-size: 1.75rem; } .specimen-grid { grid-template-columns: 1fr; } .link-showcase { grid-template-columns: repeat(2, 1fr); } .card-showcase { grid-template-columns: 1fr; } .input-grid { grid-template-columns: 1fr; } .token-grid { grid-template-columns: repeat(2, 1fr); } .type-row { grid-template-columns: 4.5rem 1fr; padding-inline: 1rem; } footer { display: block; } footer p { margin-top: .75rem; } }
 	@media (max-width: 420px) { .type-row { grid-template-columns: 1fr; gap: .5rem; } .link-showcase { grid-template-columns: 1fr; } .token-grid { grid-template-columns: 1fr; } }
 </style>
