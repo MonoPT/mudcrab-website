@@ -5,8 +5,16 @@
 			import Badge from '../../components/Badge.svelte';
 				import Card from '../../components/Card.svelte';
 					import TextInput from '../../components/TextInput.svelte';
+					import Select from '../../components/Select.svelte' with { wake: 'load' };
 
 					let searchValue = $state('');
+					let category = $state<string | undefined>(undefined);
+					const categoryItems = [
+						{ label: 'All categories', value: 'all' },
+						{ label: 'Interface', value: 'interface' },
+						{ label: 'Installation', value: 'installation' },
+						{ label: 'Updates', value: 'updates' }
+					];
 </script>
 
 {#snippet arrowIcon()}
@@ -271,9 +279,33 @@
 			</div>
 		</section>
 
+		<section class="section" aria-labelledby="select-heading">
+			<div class="section-heading">
+				<p class="eyebrow">07 · Forms</p>
+				<h2 id="select-heading">Select</h2>
+				<p>A styled select with keyboard navigation and predictable focus behavior, powered by bits-ui.</p>
+			</div>
+
+			<div class="input-showcase select-showcase">
+				<div class="input-group">
+					<span class="type-label">Selection states</span>
+					<div class="input-grid">
+						<Select id="component-category" label="Category" items={categoryItems} bind:value={category} />
+						<Select
+							id="component-disabled-select"
+							label="Disabled select"
+							items={categoryItems}
+							placeholder="Unavailable"
+							disabled
+						/>
+					</div>
+				</div>
+			</div>
+		</section>
+
 		<section class="section tokens" aria-labelledby="tokens-heading">
 			<div class="section-heading">
-				<p class="eyebrow">07 · Usage</p>
+				<p class="eyebrow">08 · Usage</p>
 				<h2 id="tokens-heading">Semantic HTML first</h2>
 				<p>Use the correct heading level for the document structure. The theme handles the visual hierarchy.</p>
 			</div>
@@ -323,6 +355,7 @@
 	.input-showcase { display: grid; gap: 1px; border: 1px solid var(--color-border); background: var(--color-border); }
 	.input-group { display: grid; gap: 1rem; padding: 1.5rem; background: var(--color-surface); }
 	.input-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1.25rem; }
+	.select-showcase { margin-top: 0; }
 
 	.badge-group { display: grid; gap: 1rem; padding: 1.5rem; background: var(--color-surface); }
 	.badge-row { display: flex; flex-wrap: wrap; align-items: center; gap: .75rem; }
