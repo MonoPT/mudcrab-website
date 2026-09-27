@@ -8,10 +8,12 @@
 	import Select from '../../components/Select.svelte' with { wake: 'load' };
 	import Checkbox from '../../components/Checkbox.svelte' with { wake: 'load' };
 	import RadioGroup from '../../components/RadioGroup.svelte' with { wake: 'load' };
+		import Switch from '../../components/Switch.svelte' with { wake: 'load' };
 
 	let searchValue = $state('');
 	let category = $state<string | undefined>(undefined);
 	let radioValue = $state<string | undefined>('balanced');
+		let soundEnabled = $state(true);
 	const categoryItems = [
 		{ label: 'All categories', value: 'all' },
 		{ label: 'Interface', value: 'interface' },
@@ -418,9 +420,37 @@
 			</div>
 		</section>
 
+		<section class="section" aria-labelledby="switch-heading">
+			<div class="section-heading">
+				<p class="eyebrow">10 · Forms</p>
+				<h2 id="switch-heading">Switch</h2>
+				<p>Use switches for immediate on/off preferences that take effect as soon as they change.</p>
+			</div>
+
+			<div class="input-showcase switch-showcase">
+				<div class="input-group">
+					<span class="type-label">Preference states</span>
+					<div class="checkbox-grid">
+						<Switch
+							id="sound-switch"
+							label="Interface sounds"
+							description="Play sounds for menus and interactions."
+							bind:checked={soundEnabled}
+						/>
+						<Switch
+							id="cloud-switch"
+							label="Cloud saves"
+							description="Keep your progress synchronized across devices."
+						/>
+						<Switch id="disabled-switch" label="Unavailable setting" disabled />
+					</div>
+				</div>
+			</div>
+		</section>
+
 		<section class="section tokens" aria-labelledby="tokens-heading">
 			<div class="section-heading">
-				<p class="eyebrow">10 · Usage</p>
+				<p class="eyebrow">11 · Usage</p>
 				<h2 id="tokens-heading">Semantic HTML first</h2>
 				<p>
 					Use the correct heading level for the document structure. The theme handles the visual
