@@ -117,6 +117,7 @@ Compact status/category label.
 |---|---|---|---|
 | `tone` | `'neutral' \| 'accent' \| 'success' \| 'warning' \| 'danger'` | `'neutral'` | Semantic color. |
 | `size` | `'sm' \| 'md'` | `'sm'` | Badge size. |
+| `icon` | `Snippet` | `undefined` | Optional Lucide icon. |
 | `children` | `Snippet` | required | Badge label. |
 
 #### `EmptyState.svelte`

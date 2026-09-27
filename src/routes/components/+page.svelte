@@ -1,7 +1,8 @@
 <script lang="ts">
-	import { ArrowRight, Download, Plus, X } from '@lucide/svelte';
+	import { AlertTriangle, ArrowRight, Check, Download, Info, Plus, X } from '@lucide/svelte';
 	import Button from '../../components/Button.svelte';
 		import Link from '../../components/Link.svelte';
+			import Badge from '../../components/Badge.svelte';
 </script>
 
 {#snippet arrowIcon()}
@@ -10,6 +11,18 @@
 
 {#snippet downloadIcon()}
 	<Download size={16} strokeWidth={1.75} />
+{/snippet}
+
+{#snippet infoIcon()}
+	<Info size={14} strokeWidth={1.75} />
+{/snippet}
+
+{#snippet successIcon()}
+	<Check size={14} strokeWidth={1.75} />
+{/snippet}
+
+{#snippet warningIcon()}
+	<AlertTriangle size={14} strokeWidth={1.75} />
 {/snippet}
 
 <svelte:head>
@@ -163,9 +176,38 @@
 			</div>
 		</section>
 
+		<section class="section" aria-labelledby="badges-heading">
+			<div class="section-heading">
+				<p class="eyebrow">04 · Metadata</p>
+				<h2 id="badges-heading">Badges</h2>
+				<p>Compact labels make status, category, and environment information easy to scan.</p>
+			</div>
+
+			<div class="badge-showcase">
+				<div class="badge-group">
+					<span class="type-label">Tones</span>
+					<div class="badge-row">
+						<Badge>Neutral</Badge>
+						<Badge tone="accent">Accent</Badge>
+						<Badge tone="success" icon={successIcon}>Success</Badge>
+						<Badge tone="warning" icon={warningIcon}>Warning</Badge>
+						<Badge tone="danger">Danger</Badge>
+					</div>
+				</div>
+				<div class="badge-group">
+					<span class="type-label">Sizes and context</span>
+					<div class="badge-row">
+						<Badge size="md" tone="accent" icon={infoIcon}>Development</Badge>
+						<Badge size="md" tone="success" icon={successIcon}>Installed</Badge>
+						<Badge size="sm">Version 1.0</Badge>
+					</div>
+				</div>
+			</div>
+		</section>
+
 		<section class="section tokens" aria-labelledby="tokens-heading">
 			<div class="section-heading">
-				<p class="eyebrow">04 · Usage</p>
+				<p class="eyebrow">05 · Usage</p>
 				<h2 id="tokens-heading">Semantic HTML first</h2>
 				<p>Use the correct heading level for the document structure. The theme handles the visual hierarchy.</p>
 			</div>
@@ -210,6 +252,9 @@
 	.tokens { padding-top: 1px; }
 	.button-showcase { display: grid; gap: 1px; border: 1px solid var(--color-border); background: var(--color-border); }
 	.link-showcase { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1px; border: 1px solid var(--color-border); background: var(--color-border); }
+	.badge-showcase { display: grid; gap: 1px; border: 1px solid var(--color-border); background: var(--color-border); }
+	.badge-group { display: grid; gap: 1rem; padding: 1.5rem; background: var(--color-surface); }
+	.badge-row { display: flex; flex-wrap: wrap; align-items: center; gap: .75rem; }
 	.link-example { display: grid; align-content: start; gap: 1rem; min-height: 8rem; padding: 1.5rem; background: var(--color-surface); }
 	.link-example p { font-size: var(--text-sm); }
 	.link-example :global(.link) { display: inline-flex; }
