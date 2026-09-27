@@ -12,6 +12,7 @@
 	import Accordion from '../../components/Accordion.svelte' with { wake: 'load' };
 	import Tabs from '../../components/Tabs.svelte' with { wake: 'load' };
 	import Alert from '../../components/Alert.svelte' with { wake: 'load' };
+	import Tooltip from '../../components/Tooltip.svelte' with { wake: 'load' };
 
 	let searchValue = $state('');
 	let category = $state<string | undefined>(undefined);
@@ -548,9 +549,35 @@
 			</div>
 		</section>
 
+		<section class="section" aria-labelledby="tooltip-heading">
+			<div class="section-heading">
+				<p class="eyebrow">14 · Feedback</p>
+				<h2 id="tooltip-heading">Tooltip</h2>
+				<p>
+					Use tooltips for brief, non-essential hints that clarify controls without adding visual
+					clutter.
+				</p>
+			</div>
+
+			<div class="input-showcase tooltip-showcase">
+				<div class="input-group">
+					<span class="type-label">Placement and keyboard access</span>
+					<div class="tooltip-list">
+						<Tooltip content="Shows the current installation status.">Hover or focus me</Tooltip>
+						<Tooltip content="Additional details appear on the right." side="right"
+							>Right-side hint</Tooltip
+						>
+						<Tooltip content="This hint opens after a short delay." side="bottom" delay={500}
+							>Delayed hint</Tooltip
+						>
+					</div>
+				</div>
+			</div>
+		</section>
+
 		<section class="section tokens" aria-labelledby="tokens-heading">
 			<div class="section-heading">
-				<p class="eyebrow">14 · Usage</p>
+				<p class="eyebrow">15 · Usage</p>
 				<h2 id="tokens-heading">Semantic HTML first</h2>
 				<p>
 					Use the correct heading level for the document structure. The theme handles the visual
@@ -715,6 +742,12 @@
 	}
 	.alert-list {
 		display: grid;
+		gap: 0.75rem;
+	}
+	.tooltip-list {
+		display: flex;
+		flex-wrap: wrap;
+		align-items: center;
 		gap: 0.75rem;
 	}
 	.input-grid {
