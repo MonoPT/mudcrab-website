@@ -10,11 +10,13 @@
 	import RadioGroup from '../../components/RadioGroup.svelte' with { wake: 'load' };
 	import Switch from '../../components/Switch.svelte' with { wake: 'load' };
 	import Accordion from '../../components/Accordion.svelte' with { wake: 'load' };
+	import Tabs from '../../components/Tabs.svelte' with { wake: 'load' };
 
 	let searchValue = $state('');
 	let category = $state<string | undefined>(undefined);
 	let radioValue = $state<string | undefined>('balanced');
 	let soundEnabled = $state(true);
+	let activeTab = $state<string | undefined>('overview');
 	const categoryItems = [
 		{ label: 'All categories', value: 'all' },
 		{ label: 'Interface', value: 'interface' },
@@ -41,6 +43,25 @@
 			value: 'legacy',
 			title: 'Legacy setting',
 			content: 'This setting is not available in the current version.',
+			disabled: true
+		}
+	];
+	const tabItems = [
+		{
+			value: 'overview',
+			label: 'Overview',
+			content:
+				'A focused overview keeps the most important information visible without adding noise.'
+		},
+		{
+			value: 'details',
+			label: 'Details',
+			content: 'Use this space for supporting information, configuration notes, or deeper context.'
+		},
+		{
+			value: 'unavailable',
+			label: 'Unavailable',
+			content: 'This area is not available in the current version.',
 			disabled: true
 		}
 	];
@@ -484,9 +505,24 @@
 			</div>
 		</section>
 
+		<section class="section" aria-labelledby="tabs-heading">
+			<div class="section-heading">
+				<p class="eyebrow">12 · Navigation</p>
+				<h2 id="tabs-heading">Tabs</h2>
+				<p>Use tabs to organize related views while keeping one focused panel visible at a time.</p>
+			</div>
+
+			<div class="input-showcase tabs-showcase">
+				<div class="input-group">
+					<span class="type-label">Automatic activation</span>
+					<Tabs items={tabItems} bind:value={activeTab} />
+				</div>
+			</div>
+		</section>
+
 		<section class="section tokens" aria-labelledby="tokens-heading">
 			<div class="section-heading">
-				<p class="eyebrow">12 · Usage</p>
+				<p class="eyebrow">13 · Usage</p>
 				<h2 id="tokens-heading">Semantic HTML first</h2>
 				<p>
 					Use the correct heading level for the document structure. The theme handles the visual
