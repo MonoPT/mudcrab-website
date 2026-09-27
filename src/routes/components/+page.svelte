@@ -1,6 +1,7 @@
 <script lang="ts">
 	import { ArrowRight, Download, Plus, X } from '@lucide/svelte';
 	import Button from '../../components/Button.svelte';
+		import Link from '../../components/Link.svelte';
 </script>
 
 {#snippet arrowIcon()}
@@ -135,9 +136,36 @@
 			</div>
 		</section>
 
+		<section class="section" aria-labelledby="links-heading">
+			<div class="section-heading">
+				<p class="eyebrow">03 · Navigation</p>
+				<h2 id="links-heading">Links</h2>
+				<p>Links carry navigation and inline reading actions without competing with primary buttons.</p>
+			</div>
+
+			<div class="link-showcase">
+				<div class="link-example">
+					<span class="type-label">Default link</span>
+					<Link href="/components" arrow>Read more</Link>
+				</div>
+				<div class="link-example">
+					<span class="type-label">Hover / muted</span>
+					<Link href="/components" variant="muted" arrow>View details</Link>
+				</div>
+				<div class="link-example">
+					<span class="type-label">External link</span>
+					<Link href="https://github.com" external>View on GitHub</Link>
+				</div>
+				<div class="link-example">
+					<span class="type-label">Inline link</span>
+					<p>Read the <Link href="/components" variant="inline" underline={false}>component documentation</Link> to learn more.</p>
+				</div>
+			</div>
+		</section>
+
 		<section class="section tokens" aria-labelledby="tokens-heading">
 			<div class="section-heading">
-				<p class="eyebrow">03 · Usage</p>
+				<p class="eyebrow">04 · Usage</p>
 				<h2 id="tokens-heading">Semantic HTML first</h2>
 				<p>Use the correct heading level for the document structure. The theme handles the visual hierarchy.</p>
 			</div>
@@ -181,6 +209,10 @@
 	.note .caption { margin-top: .9rem; }
 	.tokens { padding-top: 1px; }
 	.button-showcase { display: grid; gap: 1px; border: 1px solid var(--color-border); background: var(--color-border); }
+	.link-showcase { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1px; border: 1px solid var(--color-border); background: var(--color-border); }
+	.link-example { display: grid; align-content: start; gap: 1rem; min-height: 8rem; padding: 1.5rem; background: var(--color-surface); }
+	.link-example p { font-size: var(--text-sm); }
+	.link-example :global(.link) { display: inline-flex; }
 	.button-group { display: grid; gap: 1rem; padding: 1.5rem; background: var(--color-surface); }
 	.button-row { display: flex; flex-wrap: wrap; align-items: center; gap: .75rem; }
 	.token-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: .75rem; }
@@ -190,6 +222,6 @@
 	footer { display: flex; gap: 1rem; align-items: baseline; margin-top: clamp(4rem, 10vw, 8rem); padding-top: 1.5rem; border-top: 1px solid var(--color-border); }
 	footer .eyebrow { flex: 0 0 auto; margin: 0; }
 	footer p { font-size: var(--text-sm); }
-	@media (max-width: 700px) { .showcase { width: min(100% - 1.5rem, var(--content-wide)); } .hero { align-items: flex-start; } .hero-mark { width: 3.25rem; height: 3.25rem; font-size: 1.75rem; } .specimen-grid { grid-template-columns: 1fr; } .token-grid { grid-template-columns: repeat(2, 1fr); } .type-row { grid-template-columns: 4.5rem 1fr; padding-inline: 1rem; } footer { display: block; } footer p { margin-top: .75rem; } }
-	@media (max-width: 420px) { .type-row { grid-template-columns: 1fr; gap: .5rem; } .token-grid { grid-template-columns: 1fr; } }
+	@media (max-width: 700px) { .showcase { width: min(100% - 1.5rem, var(--content-wide)); } .hero { align-items: flex-start; } .hero-mark { width: 3.25rem; height: 3.25rem; font-size: 1.75rem; } .specimen-grid { grid-template-columns: 1fr; } .link-showcase { grid-template-columns: repeat(2, 1fr); } .token-grid { grid-template-columns: repeat(2, 1fr); } .type-row { grid-template-columns: 4.5rem 1fr; padding-inline: 1rem; } footer { display: block; } footer p { margin-top: .75rem; } }
+	@media (max-width: 420px) { .type-row { grid-template-columns: 1fr; gap: .5rem; } .link-showcase { grid-template-columns: 1fr; } .token-grid { grid-template-columns: 1fr; } }
 </style>

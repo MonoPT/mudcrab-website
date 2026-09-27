@@ -89,7 +89,9 @@ Text link with default, hover, external, and inline-arrow treatments.
 | Attribute | Type | Default | Description |
 |---|---|---|---|
 | `href` | `string` | required | Link destination. |
+| `variant` | `'default' \| 'muted' \| 'inline'` | `'default'` | Visual treatment. |
 | `external` | `boolean` | `false` | Adds external indicator and safe link attributes. |
+| `arrow` | `boolean` | `false` | Adds a trailing arrow indicator. |
 | `underline` | `boolean` | `true` | Controls underline treatment. |
 | `children` | `Snippet` | required | Link content. |
 
