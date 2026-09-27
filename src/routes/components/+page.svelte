@@ -14,6 +14,7 @@
 	import Alert from '../../components/Alert.svelte' with { wake: 'load' };
 	import Tooltip from '../../components/Tooltip.svelte' with { wake: 'load' };
 	import Modal from '../../components/Modal.svelte' with { wake: 'load' };
+	import CodeBlock from '../../components/CodeBlock.svelte' with { wake: 'visible' };
 
 	let searchValue = $state('');
 	let category = $state<string | undefined>(undefined);
@@ -50,6 +51,12 @@
 			disabled: true
 		}
 	];
+	const codeExample = `const profile = await loadProfile('survival');
+
+if (profile.ready) {
+  await applySettings(profile.settings);
+}`;
+
 	const tabItems = [
 		{
 			value: 'overview',
@@ -607,6 +614,24 @@
 			</div>
 		</section>
 
+		<section class="section" aria-labelledby="code-block-heading">
+			<div class="section-heading">
+				<p class="eyebrow">16 · Utility</p>
+				<h2 id="code-block-heading">Code block</h2>
+				<p>
+					Use code blocks for readable configuration examples, terminal output, and snippets that
+					should be easy to copy.
+				</p>
+			</div>
+
+			<div class="code-showcase">
+				<div class="input-group">
+					<span class="type-label">Copyable snippet</span>
+					<CodeBlock code={codeExample} language="typescript" filename="profile.ts" />
+				</div>
+			</div>
+		</section>
+
 		<section class="section tokens" aria-labelledby="tokens-heading">
 			<div class="section-heading">
 				<p class="eyebrow">16 · Usage</p>
@@ -627,7 +652,7 @@
 
 	<footer>
 		<span class="eyebrow">Next</span>
-		<p>Interactive form controls are taking shape. Disclosure and feedback components are next.</p>
+		<p>Pagination is next, followed by the remaining layout primitives and accessibility review.</p>
 	</footer>
 </div>
 
@@ -759,6 +784,21 @@
 		display: grid;
 		grid-template-columns: repeat(3, 1fr);
 		gap: 1rem;
+	}
+	.code-showcase {
+		display: grid;
+		width: 100%;
+		min-width: 0;
+		gap: 1px;
+		border: 1px solid var(--color-border);
+		background: var(--color-border);
+	}
+	.code-showcase .input-group {
+		width: 100%;
+		min-width: 0;
+		max-width: 100%;
+		padding: 1.5rem;
+		background: var(--color-surface);
 	}
 	.input-showcase {
 		display: grid;
