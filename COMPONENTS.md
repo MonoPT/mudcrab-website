@@ -1,4 +1,4 @@
-# Wah Krah Jol component inventory
+# Mudcrab component inventory
 
 This document is the implementation plan for the reusable component library in `src/components`. The visual direction follows the reference board: dark Skyrim-inspired surfaces, quiet blue accents, fine borders, generous spacing, and restrained ornament. The system should stay consistent and accessible rather than reproduce every visual detail from the generated image.
 
@@ -10,7 +10,7 @@ This document is the implementation plan for the reusable component library in `
 - **Primitives:** Use `bits-ui` for behavior-heavy components such as accordion, tabs, select, checkbox, radio group, switch, dialog, tooltip, and dropdown menu.
 - **Styling:** Component styles should consume CSS custom properties from `src/routes/theme.css`; components should not hard-code the palette.
 - **Accessibility:** Keyboard support, visible focus states, semantic elements, labels, ARIA state, reduced motion, and sufficient color contrast are required.
-- **Icons:** Use one consistent icon source and accept icons through snippets or `children`, not string names that require a hidden registry.
+- **Icons:** Use the installed `lucide-svelte` icon set. Prefer direct component imports and accept custom icons through snippets or `children`, not string names that require a hidden registry.
 
 ## Component inventory
 
@@ -21,7 +21,7 @@ Reusable identity lockup for the header, footer, and showcase hero.
 
 | Attribute | Type | Default | Description |
 |---|---|---|---|
-| `name` | `string` | `'Wah Krah Jol'` | Brand name. |
+| `name` | `string` | `'Mudcrab'` | Brand name. |
 | `subtitle` | `string` | `undefined` | Optional supporting line. |
 | `compact` | `boolean` | `false` | Mark-only or reduced lockup for narrow spaces. |
 | `href` | `string` | `'/'` | Destination when rendered as a link. |

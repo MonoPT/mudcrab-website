@@ -32,6 +32,7 @@
 	},
 	"dependencies": {
 		"@internationalized/date": "^3.8.1",
+		"@lucide/svelte": "^1.48.0",
 		"bits-ui": "^2.19.3",
 		"ogygia": "^0.7.0"
 	}
