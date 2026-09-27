@@ -19,6 +19,7 @@
 	import BrandMark from '../../components/BrandMark.svelte';
 	import SectionHeader from '../../components/SectionHeader.svelte';
 	import Divider from '../../components/Divider.svelte';
+		import EmptyState from '../../components/EmptyState.svelte';
 
 	let searchValue = $state('');
 	let category = $state<string | undefined>(undefined);
@@ -326,6 +327,24 @@ if (profile.ready) {
 					image="https://picsum.photos/seed/mudcrab-gallery/800/450"
 				/>
 			</div>
+		</section>
+
+		<section class="section" aria-labelledby="empty-state-heading">
+			<div class="section-heading">
+				<p class="eyebrow">05 · Content</p>
+				<h2 id="empty-state-heading">Empty state</h2>
+				<p>Give unavailable content a clear explanation and a useful next step.</p>
+			</div>
+
+			<EmptyState
+				icon={infoIcon}
+				title="No saved profiles yet"
+				description="Create a profile to keep your preferred settings ready for the next session."
+			>
+				{#snippet action()}
+					<Button variant="secondary">Create profile</Button>
+				{/snippet}
+			</EmptyState>
 		</section>
 
 		<section class="section" aria-labelledby="inputs-heading">
