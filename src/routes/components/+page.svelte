@@ -11,6 +11,7 @@
 	import Switch from '../../components/Switch.svelte' with { wake: 'load' };
 	import Accordion from '../../components/Accordion.svelte' with { wake: 'load' };
 	import Tabs from '../../components/Tabs.svelte' with { wake: 'load' };
+	import Alert from '../../components/Alert.svelte' with { wake: 'load' };
 
 	let searchValue = $state('');
 	let category = $state<string | undefined>(undefined);
@@ -520,9 +521,36 @@
 			</div>
 		</section>
 
+		<section class="section" aria-labelledby="alert-heading">
+			<div class="section-heading">
+				<p class="eyebrow">13 · Feedback</p>
+				<h2 id="alert-heading">Alert</h2>
+				<p>
+					Use alerts for important context, system status, and messages that need the user’s
+					attention.
+				</p>
+			</div>
+
+			<div class="input-showcase alert-showcase">
+				<div class="input-group">
+					<span class="type-label">Semantic tones</span>
+					<div class="alert-list">
+						<Alert tone="info" title="Information">Your settings are saved automatically.</Alert>
+						<Alert tone="success" title="Saved">Your load order has been updated.</Alert>
+						<Alert tone="warning" title="Review needed"
+							>Some changes may affect your current session.</Alert
+						>
+						<Alert tone="danger" title="Unable to connect" dismissible
+							>The server could not be reached. Try again in a moment.</Alert
+						>
+					</div>
+				</div>
+			</div>
+		</section>
+
 		<section class="section tokens" aria-labelledby="tokens-heading">
 			<div class="section-heading">
-				<p class="eyebrow">13 · Usage</p>
+				<p class="eyebrow">14 · Usage</p>
 				<h2 id="tokens-heading">Semantic HTML first</h2>
 				<p>
 					Use the correct heading level for the document structure. The theme handles the visual
@@ -684,6 +712,10 @@
 		gap: 1rem;
 		padding: 1.5rem;
 		background: var(--color-surface);
+	}
+	.alert-list {
+		display: grid;
+		gap: 0.75rem;
 	}
 	.input-grid {
 		display: grid;
