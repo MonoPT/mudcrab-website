@@ -1,3 +1,16 @@
+<script lang="ts">
+	import { ArrowRight, Download, Plus, X } from '@lucide/svelte';
+	import Button from '../../components/Button.svelte';
+</script>
+
+{#snippet arrowIcon()}
+	<ArrowRight size={16} strokeWidth={1.75} />
+{/snippet}
+
+{#snippet downloadIcon()}
+	<Download size={16} strokeWidth={1.75} />
+{/snippet}
+
 <svelte:head>
 	<title>Components — Mudcrab</title>
 	<meta
@@ -82,9 +95,49 @@
 			</div>
 		</section>
 
+		<section class="section" aria-labelledby="buttons-heading">
+			<div class="section-heading">
+				<p class="eyebrow">02 · Actions</p>
+				<h2 id="buttons-heading">Buttons</h2>
+				<p>One button component covers text actions, loading states, and icon-only controls.</p>
+			</div>
+
+			<div class="button-showcase">
+				<div class="button-group">
+					<span class="type-label">Variants</span>
+					<div class="button-row">
+						<Button variant="primary" trailing={arrowIcon}>Get started</Button>
+						<Button variant="secondary">View details</Button>
+						<Button variant="ghost">Explore</Button>
+						<Button variant="danger">Remove</Button>
+					</div>
+				</div>
+
+				<div class="button-group">
+					<span class="type-label">With Lucide icons</span>
+					<div class="button-row">
+						<Button variant="secondary" leading={downloadIcon}>Download</Button>
+						<Button variant="button" label="Add item"><Plus size={17} strokeWidth={1.75} /></Button>
+						<Button variant="button" label="Close"><X size={17} strokeWidth={1.75} /></Button>
+						<Button variant="button" label="Next" size="sm"><ArrowRight size={15} strokeWidth={1.75} /></Button>
+					</div>
+				</div>
+
+				<div class="button-group">
+					<span class="type-label">States and sizes</span>
+					<div class="button-row">
+						<Button size="sm" variant="secondary">Small</Button>
+						<Button size="lg" variant="primary">Large</Button>
+						<Button variant="secondary" loading>Saving</Button>
+						<Button variant="secondary" disabled>Disabled</Button>
+					</div>
+				</div>
+			</div>
+		</section>
+
 		<section class="section tokens" aria-labelledby="tokens-heading">
 			<div class="section-heading">
-				<p class="eyebrow">02 · Usage</p>
+				<p class="eyebrow">03 · Usage</p>
 				<h2 id="tokens-heading">Semantic HTML first</h2>
 				<p>Use the correct heading level for the document structure. The theme handles the visual hierarchy.</p>
 			</div>
@@ -99,7 +152,7 @@
 
 	<footer>
 		<span class="eyebrow">Next</span>
-		<p>Buttons, links, cards, and form controls will be added here as they are developed.</p>
+		<p>Links, cards, and form controls will be added here as they are developed.</p>
 	</footer>
 </div>
 
@@ -127,6 +180,9 @@
 	.note .eyebrow { color: var(--color-text-muted); }
 	.note .caption { margin-top: .9rem; }
 	.tokens { padding-top: 1px; }
+	.button-showcase { display: grid; gap: 1px; border: 1px solid var(--color-border); background: var(--color-border); }
+	.button-group { display: grid; gap: 1rem; padding: 1.5rem; background: var(--color-surface); }
+	.button-row { display: flex; flex-wrap: wrap; align-items: center; gap: .75rem; }
 	.token-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: .75rem; }
 	.token-card { display: grid; gap: .65rem; padding: 1.25rem; border: 1px solid var(--color-border); border-radius: var(--radius-md); background: var(--color-surface); }
 	.token-card code { color: var(--color-accent); font: .85rem var(--font-mono); }

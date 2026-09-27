@@ -10,7 +10,7 @@ This document is the implementation plan for the reusable component library in `
 - **Primitives:** Use `bits-ui` for behavior-heavy components such as accordion, tabs, select, checkbox, radio group, switch, dialog, tooltip, and dropdown menu.
 - **Styling:** Component styles should consume CSS custom properties from `src/routes/theme.css`; components should not hard-code the palette.
 - **Accessibility:** Keyboard support, visible focus states, semantic elements, labels, ARIA state, reduced motion, and sufficient color contrast are required.
-- **Icons:** Use the installed `lucide-svelte` icon set. Prefer direct component imports and accept custom icons through snippets or `children`, not string names that require a hidden registry.
+- **Icons:** Use the installed `@lucide/svelte` icon set. Prefer direct component imports and accept custom icons through snippets or `children`, not string names that require a hidden registry.
 
 ## Component inventory
 
@@ -70,27 +70,18 @@ Ornamental or plain section divider.
 ### 2. Actions and navigation
 
 #### `Button.svelte`
-Primary action primitive.
+Primary action primitive. Icon-only buttons use the same component with `variant="button"`; they must provide an accessible `label`.
 
 | Attribute | Type | Default | Description |
 |---|---|---|---|
-| `variant` | `'primary' \| 'secondary' \| 'ghost' \| 'danger'` | `'secondary'` | Visual emphasis. |
+| `variant` | `'primary' \| 'secondary' \| 'ghost' \| 'danger' \| 'button'` | `'secondary'` | Visual emphasis; `button` is the square icon-only treatment. |
 | `size` | `'sm' \| 'md' \| 'lg'` | `'md'` | Control size. |
 | `type` | `'button' \| 'submit' \| 'reset'` | `'button'` | Native button type. |
-| `href` | `string` | `undefined` | Renders as a link when supplied. |
+| `label` | `string` | `undefined` | Required for `variant="button"`; becomes the accessible name. |
 | `disabled` | `boolean` | `false` | Disables interaction. |
 | `loading` | `boolean` | `false` | Shows progress and prevents repeated submission. |
-| `leading` / `trailing` | `Snippet` | `undefined` | Optional icon/content slots. |
-
-#### `IconButton.svelte`
-Square button for icon-only actions.
-
-| Attribute | Type | Default | Description |
-|---|---|---|---|
-| `label` | `string` | required | Accessible name; never rely on the icon alone. |
-| `variant` | `'default' \| 'ghost' \| 'danger'` | `'default'` | Visual treatment. |
-| `size` | `'sm' \| 'md' \| 'lg'` | `'md'` | Button size. |
-| `disabled` | `boolean` | `false` | Disables interaction. |
+| `leading` / `trailing` | `Snippet` | `undefined` | Optional Lucide icon/content slots. |
+| `children` | `Snippet` | `undefined` | Button label; omitted for icon-only buttons. |
 
 #### `Link.svelte`
 Text link with default, hover, external, and inline-arrow treatments.
@@ -290,7 +281,7 @@ Each section should show the rendered example beside a compact API summary. The 
 ## Suggested implementation order
 
 1. Theme tokens and typography in `src/routes/theme.css`.
-2. `Button`, `IconButton`, `Link`, `Badge`, `Card`, and `Divider`.
+2. `Button`, `Link`, `Badge`, `Card`, and `Divider`.
 3. `TextInput`, `Select`, `Checkbox`, `RadioGroup`, and `Switch`.
 4. `Accordion`, `Tabs`, `Alert`, `Tooltip`, and `Modal` using `bits-ui`.
 5. `BrandMark`, `SiteHeader`, `PageShell`, and `SectionHeader`.
