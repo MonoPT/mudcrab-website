@@ -8,12 +8,12 @@
 	import Select from '../../components/Select.svelte' with { wake: 'load' };
 	import Checkbox from '../../components/Checkbox.svelte' with { wake: 'load' };
 	import RadioGroup from '../../components/RadioGroup.svelte' with { wake: 'load' };
-		import Switch from '../../components/Switch.svelte' with { wake: 'load' };
+	import Switch from '../../components/Switch.svelte' with { wake: 'load' };
 
 	let searchValue = $state('');
 	let category = $state<string | undefined>(undefined);
 	let radioValue = $state<string | undefined>('balanced');
-		let soundEnabled = $state(true);
+	let soundEnabled = $state(true);
 	const categoryItems = [
 		{ label: 'All categories', value: 'all' },
 		{ label: 'Interface', value: 'interface' },
@@ -424,7 +424,9 @@
 			<div class="section-heading">
 				<p class="eyebrow">10 · Forms</p>
 				<h2 id="switch-heading">Switch</h2>
-				<p>Use switches for immediate on/off preferences that take effect as soon as they change.</p>
+				<p>
+					Use switches for immediate on/off preferences that take effect as soon as they change.
+				</p>
 			</div>
 
 			<div class="input-showcase switch-showcase">
@@ -468,7 +470,7 @@
 
 	<footer>
 		<span class="eyebrow">Next</span>
-		<p>Links, cards, and form controls will be added here as they are developed.</p>
+		<p>Interactive form controls are taking shape. Disclosure and feedback components are next.</p>
 	</footer>
 </div>
 
