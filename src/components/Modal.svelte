@@ -22,11 +22,7 @@
 	} = $props();
 
 	function closeFooterAction(event: MouseEvent) {
-		if ((event.target as HTMLElement).closest('button')) open = false;
-	}
-
-	function closeFooterKeyboard(event: KeyboardEvent) {
-		if (event.key === 'Enter' || event.key === ' ') open = false;
+		if ((event.target as HTMLElement).closest('.modal-action')) open = false;
 	}
 </script>
 
@@ -39,6 +35,7 @@
 		<Dialog.Content
 			class="modal-content"
 			interactOutsideBehavior={closeOnOutsideClick ? 'close' : 'ignore'}
+			onclick={closeFooterAction}
 		>
 			<div class="modal-heading">
 				<div>
@@ -53,14 +50,7 @@
 			</div>
 			<div class="modal-body">{@render content()}</div>
 			{#if footer}
-				<div
-					class="modal-footer"
-					role="group"
-					onclick={closeFooterAction}
-					onkeydown={closeFooterKeyboard}
-				>
-					{@render footer()}
-				</div>
+				<div class="modal-footer">{@render footer()}</div>
 			{/if}
 		</Dialog.Content>
 	</Dialog.Portal>
