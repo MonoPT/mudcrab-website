@@ -84,6 +84,12 @@
 </header>
 
 <style>
+    :global(body) {
+        &:has(.header-content-root .header-content.open) {
+            overflow: hidden;
+        }
+    }
+
 	.site-header {
 		position: relative;
 		z-index: var(--z-sticky);
@@ -108,6 +114,11 @@
 		display: flex;
 		align-items: center;
 		gap: 2rem;
+
+		#site-navigation {
+		    overflow-y: scroll;
+			max-height: 90svh;
+		}
 	}
 	nav ul {
 		display: flex;
