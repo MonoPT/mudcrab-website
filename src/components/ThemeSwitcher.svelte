@@ -3,14 +3,15 @@
 	import { onMount } from 'svelte';
 
 	const storageKey = 'mudcrab-theme';
-	const themeLoaders = import.meta.glob('../themes/*.css', {
+	const themeStyles = import.meta.glob('../themes/*.css', {
+		eager: true,
 		query: '?inline',
 		import: 'default'
-	}) as Record<string, () => Promise<string>>;
+	}) as Record<string, string>;
 
 	const themes = [
 		{ value: 'default', label: 'Mudcrab' },
-		...Object.keys(themeLoaders).map((path) => {
+		...Object.keys(themeStyles).map((path) => {
 			const value =
 				path
 					.split('/')
@@ -59,17 +60,13 @@
 
 		if (selectedTheme === 'default') return;
 
-		const loader = themeLoaders[`../themes/${selectedTheme}.css`];
-		if (!loader) return;
+		const css = themeStyles[`../themes/${selectedTheme}.css`];
+		if (!css || version !== loadVersion) return;
 
-		void loader().then((css) => {
-			if (version !== loadVersion) return;
-
-			themeStyle = document.createElement('style');
-			themeStyle.dataset.theme = selectedTheme;
-			themeStyle.textContent = css;
-			document.head.append(themeStyle);
-		});
+		themeStyle = document.createElement('style');
+		themeStyle.dataset.theme = selectedTheme;
+		themeStyle.textContent = css;
+		document.head.append(themeStyle);
 	});
 </script>
 
