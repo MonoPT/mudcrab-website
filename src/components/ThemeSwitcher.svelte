@@ -9,6 +9,9 @@
 		import: 'default'
 	}) as Record<string, string>;
 
+	const themeLabels: Record<string, string> = {
+		skyui: 'SkyUI'
+	};
 	const themes = [
 		{ value: 'default', label: 'Mudcrab' },
 		...Object.keys(themeStyles).map((path) => {
@@ -19,7 +22,9 @@
 					?.replace(/\.css$/, '') ?? path;
 			return {
 				value,
-				label: value.replace(/[-_]+/g, ' ').replace(/\b\w/g, (character) => character.toUpperCase())
+				label:
+					themeLabels[value] ??
+					value.replace(/[-_]+/g, ' ').replace(/\b\w/g, (character) => character.toUpperCase())
 			};
 		})
 	];
