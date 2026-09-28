@@ -6,6 +6,7 @@
 	import Card from '../../components/Card.svelte';
 	import TextInput from '../../components/TextInput.svelte';
 	import Select from '../../components/Select.svelte' with { wake: 'load' };
+	import Combobox from '../../components/Combobox.svelte' with { wake: 'load' };
 	import Checkbox from '../../components/Checkbox.svelte' with { wake: 'load' };
 	import RadioGroup from '../../components/RadioGroup.svelte' with { wake: 'load' };
 	import Switch from '../../components/Switch.svelte' with { wake: 'load' };
@@ -23,6 +24,8 @@
 
 	let searchValue = $state('');
 	let category = $state<string | undefined>(undefined);
+	let mod = $state<string | undefined>(undefined);
+	let enabledMods = $state<string[]>([]);
 	let radioValue = $state<string | undefined>('balanced');
 	let soundEnabled = $state(true);
 	let activeTab = $state<string | undefined>('overview');
@@ -33,6 +36,14 @@
 		{ label: 'Interface', value: 'interface' },
 		{ label: 'Installation', value: 'installation' },
 		{ label: 'Updates', value: 'updates' }
+	];
+	const modItems = [
+		{ label: 'SkyUI', value: 'skyui' },
+		{ label: 'Unofficial Skyrim Special Edition Patch', value: 'ussep' },
+		{ label: 'Static Mesh Improvement Mod', value: 'smim' },
+		{ label: 'Ordinator — Perks of Skyrim', value: 'ordinator' },
+		{ label: 'Legacy of the Dragonborn', value: 'lotd' },
+		{ label: 'Frostfall', value: 'frostfall', disabled: true }
 	];
 	const radioItems = [
 		{ label: 'Performance', value: 'performance', description: 'Prioritize a faster experience.' },
@@ -428,6 +439,39 @@ if (profile.ready) {
 							items={categoryItems}
 							placeholder="Unavailable"
 							disabled
+						/>
+					</div>
+				</div>
+			</div>
+		</section>
+
+		<section class="section" aria-labelledby="combobox-heading">
+			<div class="section-heading">
+				<p class="eyebrow">08 · Forms</p>
+				<h2 id="combobox-heading">Combobox</h2>
+				<p>Search a list of options and select one without leaving the keyboard.</p>
+			</div>
+
+			<div class="input-showcase">
+				<div class="input-group">
+					<span class="type-label">Searchable selection</span>
+					<div class="input-grid">
+						<Combobox
+							id="component-mod"
+							label="Installed mod"
+							items={modItems}
+							placeholder="Search installed mods..."
+							description="Type to filter the available options."
+							bind:value={mod}
+						/>
+						<Combobox
+							id="component-enabled-mods"
+							label="Enabled mods"
+							items={modItems}
+							placeholder="Search mods to enable..."
+							description="The list stays open so you can select several options."
+							multiple
+							bind:value={enabledMods}
 						/>
 					</div>
 				</div>
