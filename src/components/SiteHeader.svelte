@@ -14,12 +14,14 @@
 		items = [],
 		actions,
 		sticky = false,
+		overlay = false,
 		mobileLabel = 'Open menu'
 	}: {
 		brand: Snippet;
 		items?: NavItem[];
 		actions?: Snippet;
 		sticky?: boolean;
+		overlay?: boolean;
 		mobileLabel?: string;
 	} = $props();
 
@@ -46,11 +48,22 @@
 	function handleKeydown(event: KeyboardEvent) {
 		if (event.key === 'Escape') closeMenu();
 	}
+
+	let scrolled = $state(false);
+
+	function updateScrollState() {
+		scrolled = overlay && window.scrollY > 24;
+	}
+
+	$effect(() => {
+		overlay;
+		updateScrollState();
+	});
 </script>
 
-<svelte:window onkeydown={handleKeydown} />
+<svelte:window onkeydown={handleKeydown} onscroll={updateScrollState} />
 
-<header class="site-header" class:sticky>
+<header class="site-header" class:sticky class:overlay class:scrolled>
 	<div class="header-inner">
 		{@render brand()}
 		<button
@@ -114,6 +127,22 @@
 	.site-header.sticky {
 		position: sticky;
 		top: 0;
+	}
+	.site-header.overlay {
+		position: absolute;
+		top: 0;
+		right: 0;
+		left: 0;
+		border-bottom-color: transparent;
+		background: color-mix(in srgb, var(--color-background) 12%, transparent);
+		backdrop-filter: blur(3px);
+		transition:
+			background var(--duration-normal) var(--ease-standard),
+			backdrop-filter var(--duration-normal) var(--ease-standard);
+	}
+	.site-header.overlay.scrolled {
+		background: color-mix(in srgb, var(--color-background) 78%, transparent);
+		backdrop-filter: blur(14px);
 	}
 	.header-inner {
 		display: flex;

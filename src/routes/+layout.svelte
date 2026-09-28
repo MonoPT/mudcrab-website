@@ -16,7 +16,7 @@
 
 <svelte:head><link rel="icon" href={favicon} /></svelte:head>
 
-<SiteHeader items={navigation} sticky>
+<SiteHeader items={navigation} sticky overlay={page.url.pathname === '/'}>
 	{#snippet brand()}<BrandMark subtitle="Design system" />{/snippet}
 	{#snippet actions()}<ThemeSwitcher />{/snippet}
 </SiteHeader>
