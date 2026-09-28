@@ -4,6 +4,7 @@
 	import favicon from '$lib/assets/favicon.svg';
 	import BrandMark from '../components/BrandMark.svelte';
 	import SiteHeader from '../components/SiteHeader.svelte';
+	import ThemeSwitcher from '../components/ThemeSwitcher.svelte';
 	import PageShell from '../components/PageShell.svelte';
 
 	let { children } = $props();
@@ -17,6 +18,7 @@
 
 <SiteHeader items={navigation} sticky>
 	{#snippet brand()}<BrandMark subtitle="Design system" />{/snippet}
+	{#snippet actions()}<ThemeSwitcher />{/snippet}
 </SiteHeader>
 
 <PageShell>
