@@ -58,6 +58,7 @@
 		gap: 0.25rem;
 		border-bottom: 1px solid var(--color-border);
 		overflow-x: auto;
+		overflow-y: hidden;
 	}
 	:global(.tabs.vertical .tabs-list) {
 		display: grid;
@@ -131,6 +132,7 @@
 			border-right: 0;
 			border-bottom: 1px solid var(--color-border);
 			overflow-x: auto;
+			overflow-y: hidden;
 		}
 	}
 </style>
