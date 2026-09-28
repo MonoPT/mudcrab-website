@@ -55,29 +55,30 @@
 		</button>
 
 		{#if menuOpen}
-			<button class="menu-backdrop" type="button" aria-label="Close menu" onclick={closeMenu}></button>
+			<button class="menu-backdrop" type="button" aria-label="Close menu" onclick={closeMenu}
+			></button>
 		{/if}
 
 		<div class="header-content-root">
-    		<div class="header-content" class:open={menuOpen}>
-    			<nav id="site-navigation" aria-label="Main navigation">
-    				<ul>
-    					{#each items as item}
-    						<li>
-    							<a
-    								class:active={item.active}
-    								href={item.href}
-    								aria-current={item.active ? 'page' : undefined}
-    								target={item.external ? '_blank' : undefined}
-    								rel={item.external ? 'noreferrer' : undefined}
-    								onclick={closeMenu}>{item.label}</a
-    							>
-    						</li>
-    					{/each}
-    				</ul>
-    			</nav>
-    			{#if actions}<div class="header-actions">{@render actions()}</div>{/if}
-    		</div>
+			<div class="header-content" class:open={menuOpen}>
+				<nav id="site-navigation" aria-label="Main navigation">
+					<ul>
+						{#each items as item}
+							<li>
+								<a
+									class:active={item.active}
+									href={item.href}
+									aria-current={item.active ? 'page' : undefined}
+									target={item.external ? '_blank' : undefined}
+									rel={item.external ? 'noreferrer' : undefined}
+									onclick={closeMenu}>{item.label}</a
+								>
+							</li>
+						{/each}
+					</ul>
+				</nav>
+				{#if actions}<div class="header-actions">{@render actions()}</div>{/if}
+			</div>
 		</div>
 	</div>
 </header>
@@ -176,7 +177,7 @@
 	@media (max-width: 700px) {
 		.site-header {
 			&:has(.header-content-root .header-content.open) {
-			    backdrop-filter: none;
+				backdrop-filter: none;
 			}
 		}
 		.header-inner {
@@ -205,14 +206,14 @@
 			width: 100svw;
 			height: 100svh;
 			pointer-events: none;
-			transition: .12s;
+			transition: 0.12s;
 
 			&:has(.header-content.open) {
-    			background: color-mix(in srgb, var(--color-background) 64%, transparent);
-                backdrop-filter: blur(3px);
+				background: color-mix(in srgb, var(--color-background) 64%, transparent);
+				backdrop-filter: blur(3px);
 			}
 		}
-		
+
 		.header-content {
 			position: fixed;
 			top: 0;
