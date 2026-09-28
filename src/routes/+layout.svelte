@@ -3,7 +3,7 @@
 	import { page } from '$app/state';
 	import favicon from '$lib/assets/favicon.svg';
 	import BrandMark from '../components/BrandMark.svelte';
-	import SiteHeader from '../components/SiteHeader.svelte' with { wake: 'load' };
+	import SiteHeader from '../components/SiteHeader.svelte';
 	import PageShell from '../components/PageShell.svelte';
 
 	let { children } = $props();
