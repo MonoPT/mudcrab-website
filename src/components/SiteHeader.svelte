@@ -54,24 +54,30 @@
 			{/if}
 		</button>
 
-		<div class="header-content" class:open={menuOpen}>
-			<nav id="site-navigation" aria-label="Main navigation">
-				<ul>
-					{#each items as item}
-						<li>
-							<a
-								class:active={item.active}
-								href={item.href}
-								aria-current={item.active ? 'page' : undefined}
-								target={item.external ? '_blank' : undefined}
-								rel={item.external ? 'noreferrer' : undefined}
-								onclick={closeMenu}>{item.label}</a
-							>
-						</li>
-					{/each}
-				</ul>
-			</nav>
-			{#if actions}<div class="header-actions">{@render actions()}</div>{/if}
+		{#if menuOpen}
+			<button class="menu-backdrop" type="button" aria-label="Close menu" onclick={closeMenu}></button>
+		{/if}
+
+		<div class="header-content-root">
+    		<div class="header-content" class:open={menuOpen}>
+    			<nav id="site-navigation" aria-label="Main navigation">
+    				<ul>
+    					{#each items as item}
+    						<li>
+    							<a
+    								class:active={item.active}
+    								href={item.href}
+    								aria-current={item.active ? 'page' : undefined}
+    								target={item.external ? '_blank' : undefined}
+    								rel={item.external ? 'noreferrer' : undefined}
+    								onclick={closeMenu}>{item.label}</a
+    							>
+    						</li>
+    					{/each}
+    				</ul>
+    			</nav>
+    			{#if actions}<div class="header-actions">{@render actions()}</div>{/if}
+    		</div>
 		</div>
 	</div>
 </header>
@@ -168,29 +174,73 @@
 		cursor: pointer;
 	}
 	@media (max-width: 700px) {
+		.site-header {
+			&:has(.header-content-root .header-content.open) {
+			    backdrop-filter: none;
+			}
+		}
 		.header-inner {
 			position: relative;
 			min-height: 4rem;
 		}
 		.menu-toggle {
+			position: relative;
+			z-index: 3;
 			display: grid;
 		}
-		.header-content {
-			position: absolute;
-			top: calc(100% + 1px);
-			right: 0;
+		.menu-backdrop {
+			position: fixed;
+			inset: 0;
+			z-index: 1;
+			padding: 0;
+			border: 0;
+			cursor: default;
+		}
+
+		.header-content-root {
+			position: fixed;
+			top: 0;
 			left: 0;
-			display: none;
-			align-items: stretch;
-			gap: 1rem;
-			padding: 1rem;
-			border: 1px solid var(--color-border);
-			border-top: 0;
-			background: var(--color-surface-raised);
-			box-shadow: var(--shadow-md);
+			z-index: 2;
+			width: 100svw;
+			height: 100svh;
+			pointer-events: none;
+			transition: .12s;
+
+			&:has(.header-content.open) {
+    			background: color-mix(in srgb, var(--color-background) 64%, transparent);
+                backdrop-filter: blur(3px);
+			}
 		}
-		.header-content.open {
+		
+		.header-content {
+			position: fixed;
+			top: 0;
+			right: 0;
+			bottom: 0;
 			display: grid;
+			width: min(85vw, 28rem);
+			height: 100svh;
+			align-content: start;
+			gap: 1.25rem;
+			padding: 5.5rem 1.5rem 1.5rem;
+			border-left: 1px solid var(--color-border-strong);
+			background: var(--color-surface-raised);
+			box-shadow: var(--shadow-lg);
+			visibility: hidden;
+			pointer-events: none;
+			transform: translateX(100%);
+			transition:
+				transform var(--duration-normal) var(--ease-standard),
+				visibility 0s linear var(--duration-normal);
+
+			&.open {
+				visibility: visible;
+				pointer-events: auto;
+				transform: translateX(0);
+				transition-delay: 0s;
+				pointer-events: all;
+			}
 		}
 		nav ul {
 			display: grid;
@@ -206,7 +256,8 @@
 		}
 	}
 	@media (prefers-reduced-motion: reduce) {
-		nav a::after {
+		nav a::after,
+		.header-content {
 			transition: none;
 		}
 	}
