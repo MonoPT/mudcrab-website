@@ -8,6 +8,8 @@
 		variant = 'secondary',
 		size = 'md',
 		type = 'button',
+		href,
+		target,
 		disabled = false,
 		loading = false,
 		label,
@@ -18,6 +20,8 @@
 		variant?: Variant;
 		size?: Size;
 		type?: 'button' | 'submit' | 'reset';
+		href?: string;
+		target?: string;
 		disabled?: boolean;
 		loading?: boolean;
 		label?: string;
@@ -27,14 +31,7 @@
 	} = $props();
 </script>
 
-<button
-	class="button {variant} {size}"
-	class:icon-only={variant === 'button'}
-	{type}
-	disabled={disabled || loading}
-	aria-label={variant === 'button' ? label : undefined}
-	aria-busy={loading}
->
+{#snippet content()}
 	{#if loading}
 		<span class="spinner" aria-hidden="true"></span>
 	{:else if leading}
@@ -44,7 +41,32 @@
 	{#if !loading && trailing}
 		<span class="icon" aria-hidden="true">{@render trailing()}</span>
 	{/if}
-</button>
+{/snippet}
+
+{#if href}
+	<a
+		class="button {variant} {size}"
+		class:icon-only={variant === 'button'}
+		{href}
+		{target}
+		rel={target === '_blank' ? 'noreferrer' : undefined}
+		aria-label={variant === 'button' ? label : undefined}
+		aria-busy={loading}
+	>
+		{@render content()}
+	</a>
+{:else}
+	<button
+		class="button {variant} {size}"
+		class:icon-only={variant === 'button'}
+		{type}
+		disabled={disabled || loading}
+		aria-label={variant === 'button' ? label : undefined}
+		aria-busy={loading}
+	>
+		{@render content()}
+	</button>
+{/if}
 
 <style>
 	.button {
@@ -62,6 +84,7 @@
 		font-weight: 600;
 		letter-spacing: 0.1em;
 		line-height: 1;
+		text-decoration: none;
 		text-transform: uppercase;
 		cursor: pointer;
 		transition:
@@ -141,9 +164,13 @@
 		align-items: center;
 		justify-content: center;
 	}
-	.icon :global(svg) {
+	.icon :global(svg),
+	.icon :global(img) {
 		width: 1rem;
 		height: 1rem;
+	}
+	.icon :global(img) {
+		display: block;
 	}
 	.icon-only :global(svg) {
 		width: 1.1rem;
