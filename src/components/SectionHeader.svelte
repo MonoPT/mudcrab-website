@@ -58,6 +58,11 @@
 	.section-header.center .section-copy {
 		max-width: 48rem;
 	}
+	.section-header.center .eyebrow {
+		width: fit-content;
+		margin-right: auto;
+		margin-left: auto;
+	}
 	@media (max-width: 600px) {
 		.section-header {
 			display: grid;

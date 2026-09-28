@@ -127,8 +127,9 @@
 	.site-header.sticky {
 		position: sticky;
 		top: 0;
+		left: 0;
 	}
-	.site-header.overlay {
+	.site-header.overlay:not(.sticky) {
 		position: absolute;
 		top: 0;
 		right: 0;

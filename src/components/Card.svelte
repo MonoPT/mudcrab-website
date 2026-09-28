@@ -69,7 +69,11 @@
 		overflow: hidden;
 		border: 1px solid var(--color-border);
 		border-radius: var(--radius-md);
-		background: linear-gradient(145deg, rgb(19 31 38 / 0.95), rgb(10 17 21 / 0.95));
+		background: linear-gradient(
+			145deg,
+			color-mix(in srgb, var(--color-surface-raised) 95%, transparent),
+			color-mix(in srgb, var(--color-background-soft) 95%, transparent)
+		);
 		box-shadow: var(--shadow-sm);
 	}
 
@@ -115,7 +119,11 @@
 	}
 
 	.feature {
-		background: linear-gradient(145deg, rgb(28 47 59 / 0.9), rgb(10 17 21 / 0.95));
+		background: linear-gradient(
+			145deg,
+			color-mix(in srgb, var(--color-surface-hover) 90%, transparent),
+			color-mix(in srgb, var(--color-background-soft) 95%, transparent)
+		);
 	}
 	.feature h3 {
 		font-size: var(--text-2xl);
