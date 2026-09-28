@@ -24,9 +24,23 @@
 	} = $props();
 
 	let menuOpen = $state(false);
+	let menuClosing = $state(false);
+	let closeTimer: ReturnType<typeof setTimeout> | undefined;
+
+	function openMenu() {
+		if (closeTimer) clearTimeout(closeTimer);
+		menuClosing = false;
+		menuOpen = true;
+	}
 
 	function closeMenu() {
+		if (!menuOpen) return;
+
 		menuOpen = false;
+		menuClosing = true;
+		closeTimer = setTimeout(() => {
+			menuClosing = false;
+		}, 250);
 	}
 
 	function handleKeydown(event: KeyboardEvent) {
@@ -45,7 +59,7 @@
 			aria-label={menuOpen ? 'Close menu' : mobileLabel}
 			aria-expanded={menuOpen}
 			aria-controls="site-navigation"
-			onclick={() => (menuOpen = !menuOpen)}
+			onclick={() => (menuOpen ? closeMenu() : openMenu())}
 		>
 			{#if menuOpen}
 				<X size={20} strokeWidth={1.75} aria-hidden="true" />
@@ -59,7 +73,7 @@
 			></button>
 		{/if}
 
-		<div class="header-content-root">
+		<div class="header-content-root" class:closing={menuClosing}>
 			<div class="header-content" class:open={menuOpen}>
 				<nav id="site-navigation" aria-label="Main navigation">
 					<ul>
@@ -84,11 +98,11 @@
 </header>
 
 <style>
-    :global(body) {
-        &:has(.header-content-root .header-content.open) {
-            overflow: hidden;
-        }
-    }
+	:global(body) {
+		&:has(.header-content-root .header-content.open) {
+			overflow: hidden;
+		}
+	}
 
 	.site-header {
 		position: relative;
@@ -116,7 +130,7 @@
 		gap: 2rem;
 
 		#site-navigation {
-		    overflow-y: scroll;
+			overflow-y: scroll;
 			max-height: 90svh;
 		}
 	}
@@ -209,6 +223,9 @@
 			cursor: default;
 		}
 
+		.header-content-root:not(:has(.header-content.open)):not(.closing) {
+			display: none;
+		}
 		.header-content-root {
 			position: fixed;
 			top: 0;
@@ -252,6 +269,10 @@
 				transform: translateX(0);
 				transition-delay: 0s;
 				pointer-events: all;
+
+				@starting-style {
+					transform: translateX(100%);
+				}
 			}
 		}
 		nav ul {
